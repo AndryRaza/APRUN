@@ -1,9 +1,7 @@
-
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'timeGridWeek',
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
@@ -13,7 +11,7 @@
         navLinks: true, // can click day/week names to navigate views
         dayMaxEvents: true, // allow "more" link when too many events
         events: {
-            url: 'http://127.0.0.1:8080/edsa-App_run/includes/evenements.php'
+            url: 'http://127.0.0.1:8080/edsa-App_run/includes/evenements_admin.php'
     
         },
         
@@ -21,15 +19,3 @@
 
     calendar.render();
 });
-
-
-var check = function () {
-  if (document.getElementById('role').value === 'Apprenant') {
-    document.getElementById('promotion').style.display = 'block';
-  }
-  if (document.getElementById('role').value === 'Formateur') {
-    document.getElementById('promotion').style.display = 'none';
-  }
-
-  console.log('Script chargé');
-}

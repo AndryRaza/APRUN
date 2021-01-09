@@ -1,7 +1,7 @@
 #connexion{
     height:100vh;
-    background:url('../ressources/img/bg_home.jpg');
-    
+    /*background:url('../ressources/img/bg_home.jpg');*/
+    background: linear-gradient(#a5eeeb, #9198e5);
 }
 
 header{

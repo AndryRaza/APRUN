@@ -24,7 +24,7 @@ require_once '../includes/header.php';
             <p>Gestion des comptes</p>
         </div>
         <div class="col d-flex align-items-center flex-column py-5">
-            <a href="apprenant_edt.php">
+            <a href="admin_choix_promo_edt.php">
                 <img src="../ressources/icones/icone2.png" width="200px" height="200px">
             </a>
             <p>Emploi du temps</p>

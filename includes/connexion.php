@@ -8,9 +8,10 @@ if (isset($_POST['connexion'])) {
     require_once 'bdd.php';
 
     //On réalise une jointure, on récupère dans un tableau l'id de l'utilisateur qui cherche à se connecter, ainsi que son mail, mdp et son rôle
-    $req = $bdd->prepare(" SELECT utilisateur.id_user AS id_user, utilisateur_role.id_role AS id_role, utilisateur.email AS email, utilisateur.mdp AS mdp
+    $req = $bdd->prepare(" SELECT utilisateur.id_user AS id_user, utilisateur_role.id_role AS id_role, utilisateur.email AS email, utilisateur.mdp AS mdp, utilisateur_promotion.id_promo AS id_promo
                             FROM `utilisateur` 
                             INNER JOIN `utilisateur_role` ON utilisateur.id_user = utilisateur_role.id_user
+                            INNER JOIN `utilisateur_promotion`ON utilisateur.id_user = utilisateur_promotion.id_user
                             ");
 
     $req->execute();
@@ -38,11 +39,15 @@ if (isset($_POST['connexion'])) {
             $_SESSION['user'] = $value['id_user'];
             $role = $value['id_role'];
             $_SESSION['role']  = $role;
+            if ($role === "1"){
+                $_SESSION['promo'] = $value['id_promo'];
+            }
             break;
         }
     }
 
     if ($role === "1") {   //Si l'utilisateur est un apprenant
+       
         header('Location: ../pages/apprenant_edt.php');
         exit();
     }
