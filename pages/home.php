@@ -10,9 +10,6 @@ if (!isset($_SESSION['role'])) {
     $_SESSION['role'] = "";
 }
 
-echo $_SESSION['user'];
-
-echo 'role :' .$_SESSION['role'];
 ?>
 
 
