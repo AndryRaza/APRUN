@@ -20,7 +20,7 @@ if (isset($_POST['modifier'])) {
     if ($role === '1') {    //Si l'utilisateur est un apprenant, on récupère ses infos perso + sa promotion
         $req = $bdd->prepare(" SELECT utilisateur.nom AS nom_user , utilisateur.prenom AS prenom_user, utilisateur.email AS email, promotion.nom AS promo_nom
                         FROM `utilisateur` 
-                        INNER JOIN `utilisateur_promotion` ON '$id' = utilisateur_promotion.id_user
+                        INNER JOIN `utilisateur_promotion` ON utilisateur.id_user = utilisateur_promotion.id_user
                         INNER JOIN `promotion` ON promotion.id_promo = utilisateur_promotion.id_promo
                         WHERE utilisateur.id_user = '$id'
                         ");
@@ -58,16 +58,9 @@ if (isset($_POST['modifier'])) {
                     <?php } ?>
 
                     <label class="mb-2" for="email">Adresse email</label>
-                    <input class=" form-control mb-4" value=" <?= $value['email'] ?>" type="mail" name="email" id="email" required>
-
-                    <label class="mb-2" for="statut_tuteur">Tuteur</label>
-                    <select class="form-control mb-4" name="statut_tuteur" id="statut_tuteur">
-                        <option>Oui</option>
-                        <option>Non</option>
-                    </select>
+                    <input class=" form-control mb-4" value="<?= $value['email'] ?>" type="mail" name="email" id="email" required>
 
                     <input type="hidden" value="<?= $id ?>" name="id">
-                    <input type="hidden" value="<?= $role ?>" name="role">
                     <input type="submit" class="btn btn-secondary align-self-end" value="Modifier" name="btn_modifier" id="btn_modifier">
                 </form>
             </div>

@@ -1,53 +1,53 @@
 <?php
 
 session_start();
-
-require_once 'bdd.php' ;
-
-//On réalise une jointure, on récupère dans un tableau l'id de l'utilisateur qui cherche à se connecter, ainsi que son mail, mdp et son rôle
-$req = $bdd->prepare(" SELECT utilisateur.id_user, utilisateur_role.id_role, utilisateur.email, utilisateur.mdp 
-FROM `utilisateur` 
-INNER JOIN `utilisateur_role` ON utilisateur.id_user = utilisateur_role.id_user
-");
-
-$req->execute();
-
-$tab_utilisateur = $req->fetchAll(PDO::FETCH_ASSOC);
-
-$role = '4';
+require_once 'fonctions.php';
 
 if (isset($_POST['connexion'])) {
 
-    $login = $_POST['mail_utilisateur'];
-    $pass = hash('md5', $_POST['mdp_utilisateur']);
+    require_once 'bdd.php';
 
-    if ($login === 'admin' && $_POST['mdp_utilisateur'] === 'admin') {
-        $role = '0';
-    }
-    
-    foreach ($tab_utilisateur as $key => $value) {    //On va parcourir la liste des utilisateurs pour voir si les logins rentrés sont bons, et le renvoyer vers sa page soit apprenant soit formateur
-        if ($value['email'] === $login && $value['mdp'] === $pass) {
-            $id_user = $value['id_user'];   //Lorsque on trouve l'utilisateur, on stock son id pour pouvoir avoir son rôle
-            $_SESSION['user'] = $id_user;
-            $role = $value['id_role'];
-            break;
-        }
-    }
+    //On réalise une jointure, on récupère dans un tableau l'id de l'utilisateur qui cherche à se connecter, ainsi que son mail, mdp et son rôle
+    $req = $bdd->prepare(" SELECT utilisateur.id_user AS id_user, utilisateur_role.id_role AS id_role, utilisateur.email AS email, utilisateur.mdp AS mdp
+                            FROM `utilisateur` 
+                            INNER JOIN `utilisateur_role` ON utilisateur.id_user = utilisateur_role.id_user
+                            ");
 
-    if ($role === '0') {   //Si l'utilisateur est l'admin
-        $_SESSION['role'] = '0';
+    $req->execute();
+
+    $tab_utilisateur = $req->fetchAll(PDO::FETCH_ASSOC);
+
+  
+    /* Se connecter en tant qu'admin - A CHANGER ET A STOCKER DANS LA BDD */ 
+    if ($_POST['mail_utilisateur'] === 'admin' && $_POST['mdp_utilisateur'] === 'admin') {
+        $_SESSION['role']  = '0';
         header('Location: ../pages/admin_accueil.php');
         exit();
     }
 
-    if ($role === '1') {   //Si l'utilisateur est un apprenant
-        $_SESSION['role'] = '1';
+    /* SINON */
+    $login =validate ($_POST['mail_utilisateur']);
+    $pass = hash('md5', $_POST['mdp_utilisateur']);
+    
+    foreach ($tab_utilisateur as $key => $value) {
+       //On va parcourir la liste des utilisateurs pour voir si les logins rentrés sont bons, et le renvoyer vers sa page soit apprenant soit formateur
+    
+       if ($value['email'] === $login && $value['mdp'] === $pass) {
+           
+            //Lorsque on trouve l'utilisateur, on stock son id pour pouvoir avoir son rôle
+            $_SESSION['user'] = $value['id_user'];
+            $role = $value['id_role'];
+            $_SESSION['role']  = $role;
+            break;
+        }
+    }
+
+    if ($role === "1") {   //Si l'utilisateur est un apprenant
         header('Location: ../pages/apprenant_edt.php');
         exit();
     }
 
-    if ($role === '2') {   //Si l'utilisateur un est formateur
-        $_SESSION['role'] = '2';
+    if ($role === "2") {   //Si l'utilisateur un est formateur
         header('Location: ../pages/formateur_accueil.php');
         exit();
     }
