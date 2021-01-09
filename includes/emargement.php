@@ -1,0 +1,71 @@
+<?php 
+
+if (isset($_POST['valider_promo_formateur'])){
+
+$id_promo = $_POST['choix_promo_formateur'];
+
+require_once 'bdd.php' ;
+
+$req = $bdd->prepare("SELECT promotion.nom AS nom_promo,promotion.debut AS debut_promo,promotion.fin AS fin_promo,
+                        utilisateur.nom AS nom_utilisateur, utilisateur.prenom as prenom_utilisateur, utilisateur.id_user AS id_user
+                        
+                        FROM `utilisateur_promotion` 
+                        INNER JOIN `utilisateur`ON utilisateur_promotion.id_user = utilisateur.id_user
+                        INNER JOIN `promotion`ON promotion.id_promo = '$id_promo'
+                        WHERE utilisateur_promotion.id_promo = '$id_promo'
+                        ");
+$req->execute();
+$tab_utilisateur = $req->fetchAll(PDO::FETCH_ASSOC);
+
+$req_promo = $bdd->prepare("SELECT `nom`,`debut`, `fin` FROM `promotion` WHERE id_promo = '$id_promo'");
+$req_promo->execute();
+$tab_promotion = $req_promo->fetch(PDO::FETCH_ASSOC);
+
+?>
+
+<div class="d-flex flex-column text-center mt-5">
+    <h1>
+        Feuille d'émargement
+    </h1>
+
+    <p>Promotion : <?= $tab_promotion['debut']. '-'. $tab_promotion['fin'] . ' - '.$tab_promotion['nom']  ?> </p>
+
+    <p>Date : <?= date('d-m-Y'); ?></p>
+</div>
+
+<section class="container text-center bg-light py-5">
+    <form action="../includes/absence.php" method="POST">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Présent(e)</th>
+                    <th scope="col">Absent(e)</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php 
+                foreach($tab_utilisateur as $key => $value){
+            ?>
+                <tr>
+                    <th scope="row"><?= $value['nom_utilisateur'] ?></th>
+                    <td><?= $value['prenom_utilisateur'] ?></td>
+                    <td>
+    
+                    <input type="checkbox" name="present_<?=$value['id_user'] ?>" checked>
+                    
+                    </td>
+                    <td><input type="checkbox" name="absent_<?=$value['id_user'] ?>"></td>
+                </tr>
+                <?php }?>
+            </tbody>
+        </table>
+        <input type="hidden" name="id_promo" value="<?= $id_promo ?>">
+        <input type="hidden" name="date" value=" <?= date('Y-m-d'); ?>">
+        <input type="submit" class="btn btn-primary" value="Valider" name="valider_emargement">
+    </form>
+</section>
+
+<?php
+}

@@ -1,0 +1,154 @@
+#connexion{
+    height:100vh;
+    background:url('../ressources/img/bg_home.jpg');
+    
+}
+
+header{
+    background-color:#b7d6e2 ;
+}
+
+footer{
+    background-color: #FF8C00;
+    margin-top:50vh;
+
+}
+
+
+#liste_apprenant_tuteur a{
+    text-decoration: none;
+    color:black;
+}
+
+#btn_inscription,#btn_ajout_promotion{
+    width:25%;
+}
+
+#btn_connexion{
+    background:#a5eeeb;
+    transition: all 1.5s;
+}
+
+#btn_connexion:hover{
+    background:#156b68;
+   color:white;
+}
+
+.bandeau_administration{
+    background:#87CEEB !important;
+    
+}
+
+/* Animations bordure */ 
+
+.box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: #111845a6;
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgb(23, 32, 90);
+    border: 2px solid #2a3cad;
+    color: white;
+    padding: 20px;
+  }
+  
+  .box:before{
+    content: '';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background: rgba(255,255,255,0.1);
+    transition:0.5s;
+    pointer-events: none;
+  }
+  
+ 
+  
+
+  .box span{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
+    
+  }
+  
+  .box span:nth-child(1)
+  {
+    transform:rotate(0deg);
+  }
+  
+  .box span:nth-child(2)
+  {
+    transform:rotate(90deg);
+  }
+  
+  .box span:nth-child(3)
+  {
+    transform:rotate(180deg);
+  }
+  
+  .box span:nth-child(4)
+  {
+    transform:rotate(270deg);
+  }
+  
+  .box span:before
+  {
+    content: '';
+    position: absolute;
+    width:100%;
+    height: 2px;
+    background: #50dfdb;
+    animation: animate 4s linear infinite;
+  }
+  
+  @keyframes animate {
+    0% {
+    transform:scaleX(0);
+    transform-origin: left;
+    }
+    50%
+    {
+      transform:scaleX(1);
+    transform-origin: left;
+    }
+    50.1%
+    {
+      transform:scaleX(1);
+    transform-origin: right;
+      
+    }
+    
+    100%
+    {
+      transform:scaleX(0);
+    transform-origin: right;
+      
+    }
+    
+    
+  } 
+
+  /****/
+  
+
+@media all and (max-width: 870px){
+
+#btn_inscription,#btn_ajout_promotion{
+    width:50%;
+}
+
+}
+
