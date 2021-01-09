@@ -27,7 +27,7 @@ if ($allow !== $_SESSION['role'] && $_SESSION['user'] === "") { //Pour ne pas ac
 </head>
 
 <body>
-    <header>
+    <header class="py-3">
         <nav class="navbar navbar-light">
             <div class="container d-flex">
                 <a class="navbar-brand" href="

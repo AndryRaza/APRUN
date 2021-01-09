@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $id_promo = $_POST['choix_promo'];   //On récupére l'id de l'utilisateur pour pouvoir récupérer sa promotion
 
@@ -18,26 +18,33 @@ $tab = $req->fetchALL(PDO::FETCH_ASSOC);
 ?>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar_admin');
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar_admin');
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'timeGridWeek',
-        headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-        },
-        editable: true,
-        navLinks: true, // can click day/week names to navigate views
-        dayMaxEvents: true, // allow "more" link when too many events
-        events: 
-           <?= json_encode($tab); ?>
-    
-        ,
-        
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'timeGridWeek',
+            locale: 'fr',
+            buttonText: {
+                today: 'Aujourd\'hui',
+                month: 'Mois',
+                week: 'Semaine',
+                day: 'Journée', 
+                list: 'Liste'
+            },
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+            },
+            editable: true,
+            navLinks: true, // can click day/week names to navigate views
+            dayMaxEvents: true, // allow "more" link when too many events
+            events: <?= json_encode($tab); ?>
+
+                ,
+
+        });
+
+        calendar.render();
     });
-
-    calendar.render();
-});
 </script>

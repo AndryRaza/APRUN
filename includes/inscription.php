@@ -99,7 +99,7 @@ if (isset($_POST['btn_inscription'])) {
         }
         /***********************/
 
-        header('location: ../pages/admin_accueil.php');
+        header('location: ../pages/admin_accueil_creation.php');
         exit();
     } else {
         echo 'erreur';
