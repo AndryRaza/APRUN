@@ -1,8 +1,11 @@
 <?php
 
-function validate($donnee)
+function validate($donnees)
 {     //Fonction pour sécuriser les données envoyées par les formulaires 
-    return (htmlspecialchars($donnee));
+    $donnee = htmlspecialchars($donnees); 
+    $donnees = trim($donnees);
+    $donnees = stripslashes($donnees);
+    return ($donnees);
 }
 
 function affichage_promotion()  //Fonction pour afficher les choix des promotions pour l'inscription 
