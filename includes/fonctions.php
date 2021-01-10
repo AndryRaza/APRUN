@@ -79,7 +79,7 @@ function affichage_liste_apprenant()
         if ($value['user_role'] === '1') {
         ?>
             <tr>
-                <th scope="row"><a href="#"><?= $value['nom_user'] ?></a></th>
+                <th scope="row"><?= $value['nom_user'] ?></th>
                 <td><?= $value['prenom_user'] ?></td>
                 <td><?= $value['promo_debut'] . '-' . $value['promo_fin'] . ' - ' . $value['promo_nom']  ?></td>
                 <td><?= $value['email'] ?></td>
@@ -120,7 +120,7 @@ function affichage_liste_formateur()
         ?>
 
             <tr>
-                <th scope="row"><a href="#"><?= $value['nom_user'] ?></a></th>
+                <th scope="row"><?= $value['nom_user'] ?></th>
                 <td><?= $value['prenom_user'] ?></td>
                 <td><?= $value['email'] ?></td>
                 <td>non</td>

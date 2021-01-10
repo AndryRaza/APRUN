@@ -9,10 +9,11 @@ header{
 }
 
 footer{
-    background-color: #FF8C00;
-    margin-top:50vh;
+  background: linear-gradient(#a5eeeb, #9198e5);
+    margin-top:40vh;
 
 }
+
 
 
 #liste_apprenant_tuteur a{

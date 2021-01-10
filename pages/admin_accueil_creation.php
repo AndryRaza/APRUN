@@ -14,14 +14,14 @@ require_once '../includes/header.php';
     <div class="row row-cols-md-2 row-cols-1">
         <div class="col d-flex align-items-center flex-column py-5">
             <a href="formulaire_inscription.php">
-                <img src="../ressources/icones/icone1.png" class=" border border-rounded" width="200px" height="200px">
+                <img src="../ressources/icones/icone1.png" class=" border border-rounded"  width="150px" height="150px">
             </a>
             <p>Créer un compte </p>
         </div>
 
         <div class="col d-flex align-items-center flex-column py-5">
             <a href="formulaire_ajout_promotion.php">
-                <img src="../ressources/icones/icone5.png" class=" border border-rounded" width="200px" height="200px">
+                <img src="../ressources/icones/icone5.png" class=" border border-rounded" width="150px" height="150px">
             </a>
             <p>Créer une promotion</p>
         </div>

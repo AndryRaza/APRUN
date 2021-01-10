@@ -13,13 +13,13 @@ require_once '../includes/header.php';
     <div class="row row-cols-md-2 row-cols-1">
         <div class="col d-flex align-items-center flex-column py-5">
             <a href="admin_liste_apprenants.php">
-                <img src="../ressources/icones/icone8.png" class=" border border-rounded" width="200px" height="200px">
+                <img src="../ressources/icones/icone8.png" class=" border border-rounded"  width="150px" height="150px">
             </a>
             <p>Liste des apprenants </p>
         </div>
         <div class="col d-flex align-items-center flex-column py-5">
             <a href="admin_liste_formateurs.php">
-                <img src="../ressources/icones/icone9.png" class=" border border-rounded" width="200px" height="200px">
+                <img src="../ressources/icones/icone9.png" class=" border border-rounded"  width="150px" height="150px">
             </a>
             <p>Liste formateurs</p>
         </div>
