@@ -40,6 +40,11 @@ footer{
     
 }
 
+.erreur{
+  border-color:red;
+  color:red;
+}
+
 /* Animations bordure */ 
 
 .box{

@@ -2,7 +2,7 @@
 
 require_once 'fonctions.php';
 
-require_once 'bdd.php' ;
+require_once 'bdd.php';
 
 
 /*On récupère sous forme de tableau les mails existant dans notre bdd */
@@ -19,37 +19,65 @@ $mail_existant = false;
 
 
 if (isset($_POST['btn_inscription'])) {
+    $erreur = [
+        'nom' => NULL, 'prenom' => NULL, 'statut' => NULL, 'promotion' => NULL, 'email' => NULL, 'mdp' => NULL, 'statut_tuteur' => NULL
 
-    $erreur = [];  //Tableau qui contiendra les messages d'erreur
-
+    ];  //Tableau qui contiendra les messages d'erreur
+ 
     /*On vérifie que les données envoyées ne sont pas vides */
+    if (!$_POST['nom']) {    //On regarde si le champ nom n'est pas vide
+        $erreur['nom'] = 'Veuillez rentrer un nom';
+    } /*else {
+        $donnees['nom'] = $_POST['nom'];
+    }*/
 
-    if (!isset($_POST['nom'])) {    //On regarde si le champ nom n'est pas vide
-        array_push($erreur, 'Veuillez rentrer un nom');
+    if (!$_POST['prenom']) { //On regarde si le champ prénom n'est pas vide
+        $erreur['prenom'] = 'Veuillez rentrer un prénom';
+    } /*else {
+        $donnees['nom'] = $prenom;
+    }*/
+
+    if (!$_POST['role'] || ($_POST['role'] !== 'Apprenant' && $_POST['role'] !== 'Formateur')) { //On regarde si le champ prénom n'est pas vide
+        $erreur['statut'] = 'Veuillez choisir un statut';
     }
 
-    if (!isset($_POST['prenom'])) { //On regarde si le champ prénom n'est pas vide
-        array_push($erreur, 'Veuillez rentrer un prénom');
+    if (!$_POST['promotion']) {  //On regarde si le champ email n'est pas vide
+        $erreur['promotion'] = 'Veuillez choisir une promotion';
     }
 
-    if (!isset($_POST['email'])) {  //On regarde si le champ email n'est pas vide
-        array_push($erreur, 'Veuillez rentrer un email');
+    if (!$_POST['email']) {  //On regarde si le champ email n'est pas vide
+        $erreur['email'] = 'Veuillez rentrer un email';
+    } else {
+        $donnee['email'] = $email;
     }
 
-    if (!isset($_POST['mdp'])) {        //On regarde si le champ mdp n'est pas vide
-        array_push($erreur, 'Veuillez rentrer un mdp');
+    if (!$_POST['mdp']) {        //On regarde si le champ mdp n'est pas vide
+        $erreur['mdp'] = 'Veuillez rentrer un mdp';
+    } else {
+        $donnees['nom'] = $mdp;
     }
+
+    if (!$_POST['statut_tuteur'] || ($_POST['statut_tuteur'] !== 'Oui' && $_POST['statut_tuteur'] !== 'Non')) {        
+        $erreur['statut_tuteur'] = 'Veuillez choisir une option';
+    }
+
+
 
     foreach ($tab_mail as $key => $value)        //On vérifie que l'adresse email est pas déjà présent 
     {
         if ($value['email'] === $_POST['email']) {
-            $mail_existant = true;
-        }
+            $email_existant = true;
+            $erreur['email'] = 'Mail déjà existant';
+        }/* else {
+            $donnee['email'] = $email;
+        }*/
     }
-
     /********************/
 
-    if (isset($erreur) && !$mail_existant) {   //Si le tableau contenant les erreurs est vide, on peut enregistrer les données envoyées par le formulaire
+    if ($erreur === [
+        'nom' => NULL, 'prenom' => NULL, 'statut' => NULL, 'promotion' => NULL, 'email' => NULL, 'mdp' => NULL, 'statut_tuteur' => NULL
+
+    ] && !$email_existant) {   //Si le tableau contenant les erreurs est vide, on peut enregistrer les données envoyées par le formulaire
 
         /*Partie définition des variables */
         $id = uniqid();
@@ -61,13 +89,9 @@ if (isset($_POST['btn_inscription'])) {
 
         $role = 1;  //Par défaut le rôle de l'utilisateur est 1 : apprenant
 
-
-
         /*Si il s'agit d'un apprenant, il faut récupérer l'id de la promotion choisie */
-        if ($_POST['role'] === 'Apprenant') {
-
-
-            $promotion = $_POST['promotion'];
+        if (validate($_POST['role']) === 'Apprenant') {
+            $promotion = validate($_POST['promotion']);
         }
 
         /**************************/
@@ -77,7 +101,7 @@ if (isset($_POST['btn_inscription'])) {
             $bdd->exec($requete_role);
         }
 */
-        if ($_POST['role'] === 'Formateur') {   //On regarde si l'utilisateur sera un formateur ou pas
+        if (validate($_POST['role']) === 'Formateur') {   //On regarde si l'utilisateur sera un formateur ou pas
             $role = 2;  //Si ca se trouve être un formateur, on passe à 2
         }
 
@@ -102,10 +126,10 @@ if (isset($_POST['btn_inscription'])) {
         header('location: ../pages/admin_accueil_creation.php');
         exit();
     } else {
-        echo 'erreur';
-        /*
-        header('location: ../pages/formulaire_inscription.php');
+
+        $erreur_serialiser = serialize($erreur);
+        //$donnees_serialiser = serialize($donnees);
+        header('location: ../pages/formulaire_inscription.php?error=' . $erreur_serialiser /*. '&d='.$donnees_serialiser*/);
         exit();
-        */
     }
 }
