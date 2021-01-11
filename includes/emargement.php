@@ -6,6 +6,8 @@ $id_promo = $_POST['choix_promo_formateur'];
 
 require_once 'bdd.php' ;
 
+//On va sélectionner le nom de la promotion, ainsi que la liste de tous les apprenants de cette formations avec la table utilisateur_promotion
+
 $req = $bdd->prepare("SELECT promotion.nom AS nom_promo,promotion.debut AS debut_promo,promotion.fin AS fin_promo,
                         utilisateur.nom AS nom_utilisateur, utilisateur.prenom as prenom_utilisateur, utilisateur.id_user AS id_user
                         
@@ -20,6 +22,14 @@ $tab_utilisateur = $req->fetchAll(PDO::FETCH_ASSOC);
 $req_promo = $bdd->prepare("SELECT `nom`,`debut`, `fin` FROM `promotion` WHERE id_promo = '$id_promo'");
 $req_promo->execute();
 $tab_promotion = $req_promo->fetch(PDO::FETCH_ASSOC);
+
+//On va chercher si l'appel a été fait ou pas, si oui on désactivera le bouton pour valider la feuille d'appel
+
+$appel_fait = false; 
+
+
+
+
 
 ?>
 

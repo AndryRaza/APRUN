@@ -1,9 +1,3 @@
-<?php
-$titre = 'Voir ses heures absences et présence';
-$allow = '1';
-require_once '../includes/header.php';
-
-?>
 <section class="container-fluid h-100 mt-5" id="presence_apprenant">
 
     <h1 class="text-center">Stats de présence</h1>
@@ -56,9 +50,3 @@ require_once '../includes/header.php';
         </div>
     </div>
 </section>
-
-<?php
-
-require_once '../includes/footer.php';
-
-?>
