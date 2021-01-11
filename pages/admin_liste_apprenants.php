@@ -13,8 +13,8 @@ require_once '../includes/fonctions.php';
 
 <section class="container text-center bg-light py-5">
     <div class="table-responsive">
-        <table class="table">
-            <thead>
+        <table class="table table-striped">
+            <thead class="table-dark">
                 <tr>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>

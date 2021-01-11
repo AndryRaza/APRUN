@@ -14,7 +14,7 @@ require_once '../includes/fonctions.php';
 
 <section class="container text-center bg-light py-5">
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">Nom</th>
