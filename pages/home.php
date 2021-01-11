@@ -10,6 +10,11 @@ if (!isset($_SESSION['role'])) {
     $_SESSION['role'] = "";
 }
 
+if (!isset($_SESSION['promo'])){
+    $_SESSION['promo'] = "";
+}
+
+
 ?>
 
 

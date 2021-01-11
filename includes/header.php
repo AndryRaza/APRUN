@@ -1,11 +1,11 @@
 <?php
 
 session_start();
-/*
+
 if ($allow !== $_SESSION['role'] && $_SESSION['user'] === "") { //Pour ne pas accéder à la page si on est pas connecté
     header('Location: ../index.php');
     exit();
-}*/
+}
 ?>
 
 <!DOCTYPE html>

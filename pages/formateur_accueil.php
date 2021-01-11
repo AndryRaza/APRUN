@@ -1,6 +1,7 @@
 <?php
 $titre = 'Accueil formateur';
 
+$allow = "2";
 require_once '../includes/header.php';
 require_once '../includes/fonctions.php';
 ?>
