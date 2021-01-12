@@ -145,24 +145,42 @@ function affichage_liste_formateur()
 function affichage_messagerie()
 {
     require_once 'bdd.php';
-    $req = $bdd->prepare("SELECT utilisateur.email AS email, absence_justificatif.date AS date, absence_justificatif.description AS description
+    $req_ = $bdd->prepare("SELECT utilisateur.email AS email, absence_justificatif.date AS date, 
+                            absence_justificatif.description AS description, absence_justificatif.motif AS motif, utilisateur.id_user AS id_user
                      
                     FROM absence_justificatif 
                     INNER JOIN utilisateur ON utilisateur.id_user = absence_justificatif.id_user
     
     ");
-    $req->execute();
-    $tab = $req->fetchAll(PDO::FETCH_ASSOC);
+    $req_->execute();
+    $tab = $req_->fetchAll(PDO::FETCH_ASSOC);
     foreach ($tab as $key => $value) {
         ?>
+
         <tr>
-            <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"><?= $value['email']?></a></td>
+
+            <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"><?= $value['email'] ?></a></td>
             <td><?= $value['date'] ?></td>
             <td>
                 <p>
                     <?= $value['description'] ?>
                 </p>
             </td>
+            <td class="d-flex">
+                <form class="form_justif" method="POST">
+                    <input type="hidden" class="email" name="email" value="<?= $value['date'] ?>">
+                    <input type="hidden" class="date" name="date" value="<?= $value['date'] ?>">
+                    <input type="hidden" class="motif" name="motif" value="<?= $value['motif'] ?>">
+                    <input type="hidden" class="description" name="description" value="<?= $value['description'] ?>">
+                    <input type="submit" class="btn btn-primary" value="Voir">
+                </form>
+                <form action="../includes/valider_justificatif.php" method="POST">
+                    <input type="hidden" name="id_user" value="<?= $value['id_user'] ?>">
+                    <input type="hidden" class="date" name="date" value="<?= $value['date'] ?>">
+                    <input type="submit" class="btn btn-primary" value="Valider" name="Valider">
+                </form>
+            </td>
+
         </tr>
 
 <?php

@@ -6,6 +6,20 @@ if ($allow !== $_SESSION['role'] && $_SESSION['user'] === "") { //Pour ne pas ac
     header('Location: ../index.php');
     exit();
 }
+
+$servername = "localhost";
+$username = "root";
+$password = NULL;
+$dbname = "bdd_app_aprun";
+
+$bdd2 = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+$bdd2->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$req = $bdd2->prepare("SELECT COUNT(id) FROM absence_justificatif");
+$req->execute();
+
+$nbre = $req->fetch();
+
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +35,7 @@ if ($allow !== $_SESSION['role'] && $_SESSION['user'] === "") { //Pour ne pas ac
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.js"></script>
-   
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="../scripts/script.js"></script>
     <title><?= $titre ?></title>
 </head>
@@ -44,7 +58,10 @@ if ($allow !== $_SESSION['role'] && $_SESSION['user'] === "") { //Pour ne pas ac
                 ?>
                 ">APRUN</a>
                 <div class="justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav d-flex">
+                        <?php if ($allow ===  "0" && $nbre['COUNT(id)'] > 0) { ?> <li class="nav-item"><a href="admin_messagerie.php"><button type="button" class="btn btn-info">
+                                        Message(s) non lu(s) <span class="badge bg-danger"><?= $nbre['COUNT(id)']; // Termine le traitement de la requête?></span>
+                                    </button></a></li> <?php } ?>
                         <li class="nav-item">
                             <form action="../includes/connexion.php" method="POST">
                                 <button class="btn" type="submit" name="deconnexion">Se déconnecter
