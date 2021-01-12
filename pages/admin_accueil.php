@@ -31,7 +31,7 @@ require_once '../includes/header.php';
         </div>
 
         <div class="col d-flex align-items-center flex-column py-5">
-            <a href="apprenant_edt.php">
+            <a href="admin_messagerie.php">
                 <img src="../ressources/icones/icone4.png"  width="150px" height="150px">
             </a>
             <p>Voir sa messagerie</p>

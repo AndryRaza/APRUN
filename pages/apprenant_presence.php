@@ -42,15 +42,16 @@ $tab = $req->fetch(PDO::FETCH_ASSOC);
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="../includes/justificatif.php" method="POST">
                             <select class="form-control" id="motif" name="motif">Choisir un motif
-                                <option>Maladie</option>
-                                <option>Rendez-vous</option>
-                                <option>Autre</option>
+                                <option value="Maladie">Maladie</option>
+                                <option value="Rendez-vous">Rendez-vous</option>
+                                <option value="Autre">Autre</option>
                             </select>
                             <input type="date" class="form-control my-2" id="date_motif" name="date_motif">
-                            <input type="file" class="form-control my-2" id="justificatif" name="justificat">
+                            <input type="file" class="form-control my-2" id="justificatif" name="justificatif">
                             <textarea class="form-control my-2" id="description_motif" name="description_motif" rows="10"></textarea>
+                            <input type="hidden" name="id_user" value="<?php echo $_SESSION['user'];?>">
                             <input type="submit" class="btn btn-secondary" value="Envoyer" name="envoi_justificatif">
                         </form>
                     </div>
