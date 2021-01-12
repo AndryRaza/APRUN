@@ -20,13 +20,14 @@ if (isset($_POST['connexion'])) {
 
 
     /* Se connecter en tant qu'admin - A CHANGER ET A STOCKER DANS LA BDD */
+    /*
     if ($_POST['mail_utilisateur'] === 'admin' && $_POST['mdp_utilisateur'] === 'admin') {
         $_SESSION['role']  = '0';
         header('Location: ../pages/admin_accueil.php');
         exit();
     }
+    */
 
-    /* SINON */
     $login = validate($_POST['mail_utilisateur']);
     $pass = hash('md5', $_POST['mdp_utilisateur']);
 
@@ -51,6 +52,13 @@ if (isset($_POST['connexion'])) {
                 $_SESSION['promo'] = $tab_promo['id_promo'];
             }
         }
+    }
+
+    if ($role === "0") {   //Si c'est l'ADMIN
+
+        $_SESSION['role']  = '0';
+        header('Location: ../pages/admin_accueil.php');
+        exit();
     }
 
     if ($role === "1") {   //Si l'utilisateur est un apprenant

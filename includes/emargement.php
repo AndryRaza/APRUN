@@ -78,21 +78,6 @@ if (isset($_POST['valider_promo_formateur'])) {
             </table>
             <input type="hidden" name="id_promo" value="<?= $id_promo ?>">
             <input type="hidden" name="date" value=" <?= date('Y-m-d'); ?>">
-
-
-
-
-            <div id="canvas">
-                <canvas class="roundCorners" id="newSignature" style="position: relative; margin: 0; padding: 0; border: 1px solid #c4caac;"></canvas>
-            </div>
-            <script>
-                signatureCapture();
-            </script>
-            <button class="btn btn-primary" type="button" onclick="signatureSave()">Valider la signature</button>
-            <button class="btn btn-primary" type="button" onclick="signatureClear()">Effacer la signature</button>
-            <br>
-            <img id="saveSignature" alt="Saved image png" />
-            <br>
             <input type="submit" class="btn btn-primary mt-5" value="Valider" name="valider_emargement">
         </form>
     </section>

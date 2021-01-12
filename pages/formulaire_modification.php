@@ -87,7 +87,9 @@ if (isset($_POST['supprimer'])) {
     $req_user_role->execute();
     $req_user_absence = $bdd->prepare("DELETE FROM `absence` WHERE id_user = '$id'");
     $req_user_absence->execute();
-
+    $req_user_nbre_absence = $bdd->prepare("DELETE FROM `nbre_absence_utilisateur` WHERE id_user = '$id'");
+    $req_user_nbre_absence->execute();
+    
     header('Location: admin_gestion_compte_liste.php');
 }
 
