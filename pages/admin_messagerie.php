@@ -3,14 +3,14 @@
 $allow = "0";    
 
 require_once '../includes/header.php';
-
+require_once '../includes/fonctions.php';
 ?>
 
     <!---------- Tableau messagerie ---------->
     <div class="container">
         <div class="table-responsive">
-            <table class="table">
-                <thead>
+            <table class="table table-striped">
+                <thead class="table-dark">
                     <tr>
                         <th>De</th>
                         <th>Date</th>
@@ -18,27 +18,10 @@ require_once '../includes/header.php';
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">john.doe@mail.com</a></td>
-                        <td>07/01/2021</td>
-                        <td>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti sint est illum perspiciatis facilis quae doloribus, asperiores iste suscipit distinctio sequi. Reprehenderit saepe similique nostrum, assumenda dolore accusamus nisi mollitia. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi dicta architecto reprehenderit aspernatur quasi omnis quos, eveniet cupiditate numquam sint velit nulla praesentium reiciendis. Aspernatur esse eius alias quos voluptas?</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">james.bond@mail.com</a></td>
-                        <td>15/12/2020</td>
-                        <td>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti sint est illum perspiciatis facilis quae doloribus, asperiores iste suscipit distinctio sequi. Reprehenderit saepe similique nostrum, assumenda dolore accusamus nisi mollitia.</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">neo.anderson@mail.com</a></td>
-                        <td>23/O5/2020</td>
-                        <td>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti sint est illum perspiciatis facilis quae doloribus, asperiores iste suscipit distinctio sequi. Reprehenderit saepe similique nostrum, assumenda dolore accusamus nisi mollitia.</p>
-                        </td>
-                    </tr>
+                   <?php
+                        affichage_messagerie();
+                   ?>
+
                 </tbody>
             </table>
         </div>

@@ -2,7 +2,7 @@
 
 function validate($donnees)
 {     //Fonction pour sécuriser les données envoyées par les formulaires 
-    $donnee = htmlspecialchars($donnees); 
+    $donnee = htmlspecialchars($donnees);
     $donnees = trim($donnees);
     $donnees = stripslashes($donnees);
     return ($donnees);
@@ -10,7 +10,7 @@ function validate($donnees)
 
 function affichage_promotion()  //Fonction pour afficher les choix des promotions pour l'inscription 
 {
-    require_once 'bdd.php' ;
+    require_once 'bdd.php';
     $recup_promotion = $bdd->prepare("SELECT * FROM `promotion`");
 
     $recup_promotion->execute();
@@ -61,8 +61,8 @@ function verif($role, $page)    //Fonction pour vérifier le statut du visiteur 
 
 function affichage_liste_apprenant()
 {
-    require_once 'bdd.php' ;
-  
+    require_once 'bdd.php';
+
 
     //On réalise une jointure, on récupère dans un tableau l'id de l'utilisateur qui cherche à se connecter, ainsi que son mail, mdp et son rôle
     $req = $bdd->prepare(" SELECT utilisateur.id_user AS id, utilisateur.nom AS nom_user , utilisateur.prenom AS prenom_user, utilisateur.email AS email, promotion.nom AS promo_nom, utilisateur_role.id_role AS user_role, promotion.debut AS promo_debut, promotion.fin AS promo_fin
@@ -104,7 +104,7 @@ function affichage_liste_apprenant()
 
 function affichage_liste_formateur()
 {
-    require_once 'bdd.php' ;
+    require_once 'bdd.php';
 
     //On réalise une jointure, on récupère dans un tableau l'id de l'utilisateur qui cherche à se connecter, ainsi que son mail, mdp et son rôle
     $req = $bdd->prepare(" SELECT utilisateur.id_user AS id,utilisateur.nom AS nom_user , utilisateur.prenom AS prenom_user, utilisateur.email AS email, utilisateur_role.id_role AS user_role
@@ -138,6 +138,33 @@ function affichage_liste_formateur()
                 </td>
             </tr>
 
-<?php          }
+        <?php          }
+    }
+}
+
+function affichage_messagerie()
+{
+    require_once 'bdd.php';
+    $req = $bdd->prepare("SELECT utilisateur.email AS email, absence_justificatif.date AS date, absence_justificatif.description AS description
+                     
+                    FROM absence_justificatif 
+                    INNER JOIN utilisateur ON utilisateur.id_user = absence_justificatif.id_user
+    
+    ");
+    $req->execute();
+    $tab = $req->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($tab as $key => $value) {
+        ?>
+        <tr>
+            <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"><?= $value['email']?></a></td>
+            <td><?= $value['date'] ?></td>
+            <td>
+                <p>
+                    <?= $value['description'] ?>
+                </p>
+            </td>
+        </tr>
+
+<?php
     }
 }
