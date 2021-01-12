@@ -26,12 +26,14 @@ require_once '../includes/fonctions.php';
             </thead>
             <tbody>
                 <?php 
-                    affichage_liste_apprenant();
+                    require_once '../includes/liste_apprenant.php';
                 ?>
             </tbody>
         </table>
-
     </div>
+    <?php 
+        require_once '../includes/pagination.php';
+    ?>
 </section>
 
 <?php
