@@ -12,7 +12,7 @@ require_once '../includes/header.php';
 <section class="container">
     <div class="row row-cols-md-2 row-cols-1">
         <div class="col d-flex align-items-center flex-column py-5">
-            <a href="admin_liste_apprenants.php">
+            <a href="admin_liste_apprenants.php?page=1">
                 <img src="../ressources/icones/icone8.png" class=" border border-rounded"  width="150px" height="150px">
             </a>
             <p>Liste des apprenants </p>

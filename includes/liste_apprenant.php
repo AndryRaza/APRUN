@@ -58,13 +58,16 @@ foreach ($tab_utilisateur as $key => $value) {
                     <button class="btn" type="submit" name="modifier">
                         <img src="../ressources/img/pen.png" width="20px" height="20px">
                     </button>
-                    <button class="btn" type="submit" name="supprimer">
-                        <img src="../ressources/img/delete.png" width="20px" height="20px">
-                    </button>
                 </form>
+                <button class="btn" type="button" onclick=" afficher_modal_justificatif('<?= $value['nom_user'] ?>', '<?= $value['id'] ?>', '<?= $value['user_role'] ?>')">
+                    <img src="../ressources/img/delete.png" width="20px" height="20px">
+                </button>
+                <div id="afficher_modal_supprimer">
+                </div>
+   
+                
             </td>
         </tr>
 
 <?php           }
 }
-

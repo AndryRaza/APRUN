@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
       today: 'Aujourd\'hui',
       month: 'Mois',
       week: 'Semaine',
-      day: 'Journee', 
+      day: 'Journee',
       list: 'Liste'
     },
     headerToolbar: {
@@ -42,29 +42,61 @@ var check = function () {
   console.log('Script chargé');
 }
 
-$(document).ready(function(){
+function afficher_modal_justificatif(email, date, motif, description) {
 
-  $('.form_justif').submit(function(){
-       var email = $('.email').val();
-       var date = $('.date').val();
-       var motif = $('.motif').val();
-       var description = $('.description').val();
+  document.getElementById('afficher_modal').innerHTML = `
+    
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header d-flex flex-column align-items-start">
+              <div>`+ email + `</div>
+              <div>Raison : `+ motif + `</div>
+              <div>Date : `+ date + `</div>
+          </div>
+          <div class="modal-body">
+              <p>
+              `+ description + `
+             </p>
+              <div><a href="#" class="text-decoration-none">Voir pdf</a></div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="reset()">Fermer</button>
+          </div>
+      </div>
+  </div>
+</div>
+  
+  `;
+  $("#exampleModal").modal('show');
+}
 
-      //C'est pour envoyer et stocker dans la bdd
-      $.post('http://127.0.0.1:8080/edsa-App_run/includes/justificatif_modal.php',{email:email,date:date,motif:motif,description:description},function(donnees){
-        $('.afficher_modal').html(donnees);
-      
-        $("#exampleModal").modal('show');
-      });
-      return false; //pour empecher que ca envoie 
-      
-  })
+function afficher_modal_justificatif(nom, id, role) {
 
-  function reset(){
-    $('.email').val('');
-    $('.date').val('');
-    $('.motif').val('');
-    $('.description').val('');
-  };
+  document.getElementById('afficher_modal_supprimer').innerHTML = `
+    
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmation de suppression</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment supprimer l'utilisateur "`+nom + `" ?
+            </div>
+            <div class="modal-footer">
+                <form action="formulaire_modification.php" method="POST">
+                    <input type="hidden" name="id" value="`+ id + `">
+                    <input type="hidden" name="role" value="`+ role + `">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary" name="supprimer">Oui</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-});
+  `;
+  $("#exampleModal").modal('show');
+}

@@ -116,7 +116,7 @@ function affichage_messagerie()
 
         <tr>
 
-            <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"><?= $value['email'] ?></a></td>
+            <td><?= $value['email'] ?></td>
             <td><?= $value['date'] ?></td>
             <td>
                 <p>
@@ -125,11 +125,11 @@ function affichage_messagerie()
             </td>
             <td class="d-flex">
                 <form class="form_justif" method="POST">
-                    <input type="hidden" class="email" name="email" value="<?= $value['date'] ?>">
+                    <input type="hidden" class="email" name="email" value="<?= $value['email'] ?>">
                     <input type="hidden" class="date" name="date" value="<?= $value['date'] ?>">
                     <input type="hidden" class="motif" name="motif" value="<?= $value['motif'] ?>">
                     <input type="hidden" class="description" name="description" value="<?= $value['description'] ?>">
-                    <input type="submit" class="btn btn-primary" value="Voir">
+                    <button type="button" class="btn btn-primary"  value="Voir" onclick="afficher_modal_justificatif( '<?= $value['email'] ?> ','<?= $value['date'] ?>' , '<?= $value['motif'] ?> ', '<?= $value['description'] ?> ')"> Voir </button>
                 </form>
                 <form action="../includes/valider_justificatif.php" method="POST">
                     <input type="hidden" name="id_user" value="<?= $value['id_user'] ?>">

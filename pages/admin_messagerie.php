@@ -28,7 +28,7 @@ require_once '../includes/fonctions.php';
         </div>
     </div>
 
-    <div class="afficher_modal">
+    <div id="afficher_modal">
     </div>
 
 <?php 
