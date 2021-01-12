@@ -47,15 +47,11 @@ if (isset($_POST['btn_inscription'])) {
 
     if (!$_POST['email']) {  //On regarde si le champ email n'est pas vide
         $erreur['email'] = 'Veuillez rentrer un email';
-    } else {
-        $donnee['email'] = $email;
-    }
+    } 
 
     if (!$_POST['mdp']) {        //On regarde si le champ mdp n'est pas vide
         $erreur['mdp'] = 'Veuillez rentrer un mdp';
-    } else {
-        $donnees['nom'] = $mdp;
-    }
+    } 
 
     if (!$_POST['statut_tuteur'] || ($_POST['statut_tuteur'] !== 'Oui' && $_POST['statut_tuteur'] !== 'Non')) {        
         $erreur['statut_tuteur'] = 'Veuillez choisir une option';
@@ -68,9 +64,7 @@ if (isset($_POST['btn_inscription'])) {
         if ($value['email'] === $_POST['email']) {
             $email_existant = true;
             $erreur['email'] = 'Mail déjà existant';
-        }/* else {
-            $donnee['email'] = $email;
-        }*/
+        }
     }
     /********************/
 
@@ -118,8 +112,14 @@ if (isset($_POST['btn_inscription'])) {
 
         //On va l'assigner à une promotion si l'utilisateur est défini comme un apprenant 
         if ($_POST['role'] === 'Apprenant') {
+
+            //on enregistre sa promotion
             $requete_promotion = "INSERT INTO `utilisateur_promotion`(`id_user`, `id_promo`, `entree`) VALUES ('$id','$promotion','$date_creation')";
             $bdd->exec($requete_promotion);
+
+            //on initialise son nbre d'heure d'absence
+            $requete_absence = "INSERT INTO `nbre_absence_utilisateur`(`id_user`, `nbre`) VALUES ('$id','0')";
+            $bdd->exec($requete_absence);
         }
         /***********************/
 
