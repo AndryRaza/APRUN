@@ -53,15 +53,18 @@ $(document).ready(function(){
       //C'est pour envoyer et stocker dans la bdd
       $.post('http://127.0.0.1:8080/edsa-App_run/includes/justificatif_modal.php',{email:email,date:date,motif:motif,description:description},function(donnees){
         $('.afficher_modal').html(donnees);
-        $('.email').val('');
-        $('.date').val('');
-        $('.motif').val('');
-        $('.description').val('');
+      
         $("#exampleModal").modal('show');
       });
       return false; //pour empecher que ca envoie 
       
   })
 
+  function reset(){
+    $('.email').val('');
+    $('.date').val('');
+    $('.motif').val('');
+    $('.description').val('');
+  };
 
 });

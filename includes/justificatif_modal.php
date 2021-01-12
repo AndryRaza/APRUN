@@ -14,7 +14,7 @@
                 <div><a href="#" class="text-decoration-none">Voir pdf</a></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="reset()">Fermer</button>
             </div>
         </div>
     </div>

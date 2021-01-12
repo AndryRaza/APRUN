@@ -48,6 +48,10 @@ require_once '../includes/header.php';
         </div>
 
     </div>
+
+    <form action="../includes/a_effacer.php" method="POST">
+        <input type="submit" class="btn btn-primary" name="go" value="go">
+    </form>
 </section>
 
 <?php
