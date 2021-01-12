@@ -10,7 +10,20 @@ require_once '../includes/header.php';
         Création d’un compte & promos</h1>
 </section>
 
-<section class="container">
+
+
+<section class="container d-flex flex-column">
+
+<?php if (isset($_GET['success_user'])) {?>
+<div class="alert alert-success w-50 align-self-center text-center" role="alert">
+    L'utilisateur a bien été ajouté ! 
+</div>
+<?php } ?>
+<?php if (isset($_GET['success_promotion'])) {?>
+<div class="alert alert-success w-50 align-self-center text-center" role="alert">
+    La promotion a bien été ajoutée ! 
+</div>
+<?php } ?>
     <div class="row row-cols-md-2 row-cols-1">
         <div class="col d-flex align-items-center flex-column py-5">
             <a href="formulaire_inscription.php">

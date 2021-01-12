@@ -22,7 +22,7 @@ $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $requete="INSERT INTO `promotion`(`id_promo`, `nom`, `formation`, `debut`, `fin`, `duree`) VALUES ('$id_promotion','$nom_promotion','$formation_promotion','$debut_promotion','$fin_promotion','$duree_formation')";
 $bdd->exec($requete);
 
-header('Location: ../pages/formulaire_ajout_promotion.php');
+header('Location: ../pages/formulaire_ajout_promotion.php?success_promotion="yes"');
 exit();
 
 }

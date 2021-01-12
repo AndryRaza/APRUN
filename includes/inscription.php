@@ -123,7 +123,7 @@ if (isset($_POST['btn_inscription'])) {
         }
         /***********************/
 
-        header('location: ../pages/admin_accueil_creation.php');
+        header('location: ../pages/admin_accueil_creation.php?success_user="yes"');
         exit();
     } else {
 
