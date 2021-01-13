@@ -13,25 +13,27 @@ require_once '../includes/fonctions.php';
 </div>
 
 <section class="container text-center bg-light py-5">
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Nom</th>
-                <th scope="col">Prénom</th>
-                <th scope="col">Adresse mail</th>
-                <th scope="col">Tuteur</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php 
-                affichage_liste_formateur();
-            ?>
-        </tbody>
-    </table>
-
-
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Adresse mail</th>
+                    <th scope="col">Tuteur</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                require_once '../includes/liste_formateur.php';
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <?php 
+        require_once '../includes/pagination_formateur.php';
+    ?>
 </section>
 
 <?php

@@ -71,7 +71,7 @@ function afficher_modal_justificatif(email, date, motif, description) {
   $("#exampleModal").modal('show');
 }
 
-function afficher_modal_justificatif(nom, id, role) {
+function afficher_modal_suppression(nom, id, role) {
 
   document.getElementById('afficher_modal_supprimer').innerHTML = `
     

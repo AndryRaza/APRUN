@@ -4,7 +4,7 @@ require_once 'bdd.php';
 
 /*Partie pagination */
 
-$req = $bdd->prepare("SELECT COUNT(*) FROM `utilisateur_role` where id_role = '1' ");
+$req = $bdd->prepare("SELECT COUNT(*) FROM `utilisateur_role` where id_role = '2' ");
 $req->execute();
 $tab_longueur = $req->fetchAll(PDO::FETCH_ASSOC);
 $req->closeCursor();
@@ -14,8 +14,6 @@ $number_of_results = $tab_longueur[0]['COUNT(*)'];
 
 //Nombre d'éléments à afficher par pages 
 $results_per_page = 7;
-
-
 
 //Si l'utilisateur décide d'enlever le numéro de page dans l'url 
 if (!isset($_GET['page'])) {
@@ -27,13 +25,9 @@ if (!isset($_GET['page'])) {
 //Variable pour limiter le nombre de données sélectionnées dans notre requête
 $limit_result = ($page - 1) * $results_per_page;
 
-
-
 //On réalise une jointure, on récupère dans un tableau l'id de l'utilisateur qui cherche à se connecter, ainsi que son mail, mdp et son rôle
-$req = $bdd->prepare(" SELECT utilisateur.id_user AS id, utilisateur.nom AS nom_user , utilisateur.prenom AS prenom_user, utilisateur.email AS email, promotion.nom AS promo_nom, utilisateur_role.id_role AS user_role, promotion.debut AS promo_debut, promotion.fin AS promo_fin
-                        FROM `utilisateur`  
-                        INNER JOIN `utilisateur_promotion` ON utilisateur.id_user = utilisateur_promotion.id_user
-                        INNER JOIN `promotion` ON promotion.id_promo = utilisateur_promotion.id_promo
+$req = $bdd->prepare(" SELECT utilisateur.id_user AS id,utilisateur.nom AS nom_user , utilisateur.prenom AS prenom_user, utilisateur.email AS email, utilisateur_role.id_role AS user_role
+                        FROM `utilisateur` 
                         INNER JOIN `utilisateur_role` ON utilisateur.id_user = utilisateur_role.id_user
                         LIMIT  $limit_result , $results_per_page  
                         ");
@@ -42,13 +36,14 @@ $req->execute();
 
 $tab_utilisateur = $req->fetchAll(PDO::FETCH_ASSOC);
 
+
 foreach ($tab_utilisateur as $key => $value) {
-    if ($value['user_role'] === '1') {
+    if ($value['user_role'] === '2') {
 ?>
+
         <tr>
             <th scope="row"><?= $value['nom_user'] ?></th>
             <td><?= $value['prenom_user'] ?></td>
-            <td><?= $value['promo_debut'] . '-' . $value['promo_fin'] . ' - ' . $value['promo_nom']  ?></td>
             <td><?= $value['email'] ?></td>
             <td>non</td>
             <td>
@@ -64,10 +59,8 @@ foreach ($tab_utilisateur as $key => $value) {
                 </button>
                 <div id="afficher_modal_supprimer">
                 </div>
-   
-                
             </td>
         </tr>
 
-<?php           }
+<?php          }
 }

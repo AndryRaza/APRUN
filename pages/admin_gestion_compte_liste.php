@@ -18,12 +18,11 @@ require_once '../includes/header.php';
             <p>Liste des apprenants </p>
         </div>
         <div class="col d-flex align-items-center flex-column py-5">
-            <a href="admin_liste_formateurs.php">
+            <a href="admin_liste_formateurs.php?page=1">
                 <img src="../ressources/icones/icone9.png" class=" border border-rounded"  width="150px" height="150px">
             </a>
             <p>Liste formateurs</p>
         </div>
-
     </div>
 </section>
 <?php
