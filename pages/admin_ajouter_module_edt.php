@@ -20,10 +20,10 @@ require_once '../includes/header.php';
             <label class="mb-2" for="date">Date</label>
             <input class="form-control mb-4" type="date" name="date" id="date">
 
-            <label class="mb-2" for="debut">Début du module</label>
+            <label class="mb-2" for="debut">Heure du début du module</label>
             <input class="form-control mb-4" type="time" name="debut" id="debut">
 
-            <label class="mb-2" for="fin">Début du module</label>
+            <label class="mb-2" for="fin">Heure de fin du module</label>
             <input class="form-control mb-4" type="time" name="fin" id="fin">
 
             <input type="hidden" name="id_promo" value="<?= $id_promo ?>">

@@ -44,7 +44,7 @@ $nbre = $req->fetch();
     <header class="py-3">
         <nav class="navbar navbar-light">
             <div class="container d-flex">
-                <a class="navbar-brand" href="
+                <a class="navbar-brand w-50" href="
                 <?php
                 if ($_SESSION['role'] === '0') {
                     echo 'admin_accueil.php';
@@ -58,7 +58,7 @@ $nbre = $req->fetch();
                 ?>
                 ">APRUN</a>
                 <div class="justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav d-flex">
+                    <ul class="navbar-nav">
                         <?php if ($allow ===  "0" && $nbre['COUNT(id)'] > 0) { ?> <li class="nav-item"><a href="admin_messagerie.php"><button type="button" class="btn btn-info">
                                         Message(s) non lu(s) <span class="badge bg-danger"><?= $nbre['COUNT(id)']; // Termine le traitement de la requête?></span>
                                     </button></a></li> <?php } ?>

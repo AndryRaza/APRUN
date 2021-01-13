@@ -36,7 +36,7 @@ $tab = $req->fetchALL(PDO::FETCH_ASSOC);
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
             },
-            editable: true,
+
             navLinks: true, // can click day/week names to navigate views
             dayMaxEvents: true, // allow "more" link when too many events
             events: <?= json_encode($tab); ?>
