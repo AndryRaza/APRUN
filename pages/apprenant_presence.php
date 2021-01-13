@@ -1,11 +1,18 @@
-<?php 
+<?php
 
 require_once '../includes/bdd.php';
 
 $id = $_SESSION['user'];
-$req = $bdd->prepare("SELECT * FROM `nbre_absence_utilisateur` WHERE id_user = '$id'" );
+$req = $bdd->prepare("SELECT * FROM `nbre_absence_utilisateur` WHERE id_user = '$id'");
 $req->execute();
 $tab = $req->fetch(PDO::FETCH_ASSOC);
+$req->closeCursor();
+
+$req = $bdd->prepare("SELECT `date` FROM `absence` WHERE id_user = '$id' and justifie = 'false' ");
+$req->execute();
+$tab_date = $req->fetchAll(PDO::FETCH_ASSOC);
+$req->closeCursor();
+
 ?>
 
 <section class="container-fluid h-100 mt-5" id="presence_apprenant">
@@ -15,12 +22,12 @@ $tab = $req->fetch(PDO::FETCH_ASSOC);
     <div class="container py-5 w-75 bg-light">
         <h2>Présence/Absence :</h2>
         <p class="py-2">
-            Nombres d'heures de présence :  
+            Nombres d'heures de présence :
         </p>
         <p class="py-2">
-            Nombres d'heures d'absence :    <?php 
-             echo $tab['nbre'] .' heures.';
-            ?>
+            Nombres d'heures d'absence : <?php
+                                            echo $tab['nbre'] . ' heures.';
+                                            ?>
         </p>
         <p class="py-2">
             Pourcentage de présence :
@@ -48,10 +55,18 @@ $tab = $req->fetch(PDO::FETCH_ASSOC);
                                 <option value="Rendez-vous">Rendez-vous</option>
                                 <option value="Autre">Autre</option>
                             </select>
-                            <input type="date" class="form-control my-2" id="date_motif" name="date_motif">
+                            <select class="form-select" id="date_motif" name="date_motif">
+                                <?php
+                                foreach ($tab_date as $key => $value) { ?>
+                                    <option value="<?= $value['date'] ?>"><?= $value['date'] ?></option>
+                                <?php
+                                }
+
+                                ?>
+                            </select>
                             <input type="file" class="form-control my-2" id="justificatif" name="justificatif">
                             <textarea class="form-control my-2" id="description_motif" name="description_motif" rows="10"></textarea>
-                            <input type="hidden" name="id_user" value="<?php echo $_SESSION['user'];?>">
+                            <input type="hidden" name="id_user" value="<?php echo $_SESSION['user']; ?>">
                             <input type="submit" class="btn btn-secondary" value="Envoyer" name="envoi_justificatif">
                         </form>
                     </div>
