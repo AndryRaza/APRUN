@@ -1,6 +1,3 @@
-<script src="../scripts/signature_functions.js"></script>
-<script src="../scripts/signature.js"></script>
-
 <?php
 
 
@@ -38,6 +35,33 @@ if (isset($_POST['valider_promo_formateur'])) {
 
 ?>
 
+    <script>
+  /*
+                <?php
+/*
+                foreach ($tab_utilisateur as $key => $value) { ?>
+
+                    var present_<?= $value['id_user'] ?> = document.getElementById('present_<?= $value['id_user'] ?>');
+                    var absent_<?= $value['id_user'] ?> = document.getElementById('absent_<?= $value['id_user'] ?>')
+
+                    present_<?= $value['id_user'] ?>.addEventListener("click", checked_present_<?= $value['id_user'] ?>);
+                    absent_<?= $value['id_user'] ?>.addEventListener("click",checked_absent_<?= $value['id_user'] ?>);
+
+                    function checked_present_<?= $value['id_user'] ?>() {
+                        present_<?= $value['id_user'] ?>.checked = true;
+                        absent_<?= $value['id_user'] ?>.checked = false;
+                    }
+
+                    function checked_absent_<?= $value['id_user'] ?>() {
+                        absent_<?= $value['id_user'] ?>.checked = true;
+                        present_<?= $value['id_user'] ?>.checked = false;
+                    }
+
+                <?php    }*/
+                ?>
+          */
+    </script>
+
     <div class="d-flex flex-column text-center mt-5">
         <h1>
             Feuille d'émargement
@@ -51,7 +75,7 @@ if (isset($_POST['valider_promo_formateur'])) {
     <section class="container text-center bg-light py-5">
         <form action="../includes/absence.php" method="POST">
             <table class="table table-striped">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th scope="col">Nom</th>
                         <th scope="col">Prénom</th>
@@ -67,17 +91,32 @@ if (isset($_POST['valider_promo_formateur'])) {
                             <th scope="row"><?= $value['nom_utilisateur'] ?></th>
                             <td><?= $value['prenom_utilisateur'] ?></td>
                             <td>
-
-                                <input type="checkbox" name="present_<?= $value['id_user'] ?>" checked>
-
+                                <input type="checkbox" name="present_<?= $value['id_user'] ?>" id="present_<?= $value['id_user'] ?>" checked >
                             </td>
-                            <td><input type="checkbox" name="absent_<?= $value['id_user'] ?>"></td>
+                            <td><input type="checkbox" name="absent_<?= $value['id_user'] ?>" id="absent_<?= $value['id_user'] ?>" ></td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
             <input type="hidden" name="id_promo" value="<?= $id_promo ?>">
             <input type="hidden" name="date" value=" <?= date('Y-m-d'); ?>">
+
+            <div id="canvas">
+                <canvas class="roundCorners" id="newSignature" style="position: relative; margin: 0; padding: 0; border: 1px solid #c4caac;"></canvas>
+            </div>
+            <script>
+                signatureCapture();
+            </script>
+
+            <button type="button" class="btn btn-secondary" onclick="signatureSave()">Signer</button>
+
+
+            <button type="button" class="btn btn-secondary" onclick="signatureClear()">Effacer</button>
+            </br>
+
+            <img id="saveSignature" alt="Saved image png" />
+            <br>
+
             <input type="submit" class="btn btn-primary mt-5" value="Valider" name="valider_emargement">
         </form>
     </section>
