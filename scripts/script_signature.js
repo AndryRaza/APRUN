@@ -112,27 +112,8 @@ function signatureSave() {
     var dataURL = canvas.toDataURL("image/png");
     document.getElementById("saveSignature").src = dataURL;
 
-    document.getElementById("download").download = dataURL;
-    document.getElementById("download").href = dataURL;
+    $.post('../includes/save_signature.php',{url:dataURL})
 
-    //Fonctionnelle mais pas encore adapté au projet 
-    /*
-    axios({
-        method: 'post',
-        url: 'save.php',
-        data: {
-            url: dataURL
-        }
-    })
-        .then(function (reponse) {
-            //On traite la suite une fois la réponse obtenue 
-            console.log(reponse);
-        })
-        .catch(function (erreur) {
-            //On traite ici les erreurs éventuellement survenues
-            console.log(erreur);
-        });
-        */
 };
 
 function signatureClear() {

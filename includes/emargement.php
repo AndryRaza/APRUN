@@ -36,9 +36,9 @@ if (isset($_POST['valider_promo_formateur'])) {
 ?>
 
     <script>
-  /*
+        /*
                 <?php
-/*
+                /*
                 foreach ($tab_utilisateur as $key => $value) { ?>
 
                     var present_<?= $value['id_user'] ?> = document.getElementById('present_<?= $value['id_user'] ?>');
@@ -91,9 +91,9 @@ if (isset($_POST['valider_promo_formateur'])) {
                             <th scope="row"><?= $value['nom_utilisateur'] ?></th>
                             <td><?= $value['prenom_utilisateur'] ?></td>
                             <td>
-                                <input type="checkbox" name="present_<?= $value['id_user'] ?>" id="present_<?= $value['id_user'] ?>" checked >
+                                <input type="checkbox" name="present_<?= $value['id_user'] ?>" id="present_<?= $value['id_user'] ?>" checked>
                             </td>
-                            <td><input type="checkbox" name="absent_<?= $value['id_user'] ?>" id="absent_<?= $value['id_user'] ?>" ></td>
+                            <td><input type="checkbox" name="absent_<?= $value['id_user'] ?>" id="absent_<?= $value['id_user'] ?>"></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -108,12 +108,11 @@ if (isset($_POST['valider_promo_formateur'])) {
                 signatureCapture();
             </script>
 
-            <button type="button" class="btn btn-secondary" onclick="signatureSave()">Signer</button>
+            <button type="button" onclick="signatureSave()">Save signature</button>
 
 
-            <button type="button" class="btn btn-secondary" onclick="signatureClear()">Effacer</button>
+            <button type="button" onclick="signatureClear()">Clear signature</button>
             </br>
-
             <img id="saveSignature" alt="Saved image png" />
             <br>
 
