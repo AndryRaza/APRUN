@@ -39,7 +39,6 @@ var check = function () {
     document.getElementById('promotion').style.display = 'none';
   }
 
-  console.log('Script chargé');
 }
 
 function afficher_modal_justificatif(email, date, motif, description) {
