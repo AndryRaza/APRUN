@@ -26,6 +26,9 @@ if (isset($_POST['go_un'])) {
             $req->closeCursor();
         }
 
+        $req = $bdd->prepare("INSERT INTO `utilisateur_tuteur`(`id_user_apprenant`, `id_user_tuteur`) VALUES ('$id',NULL)");
+        $req->execute();
+        $req->closeCursor();
 
         $req = $bdd->prepare("INSERT INTO `utilisateur_role`(`id_user`, `id_role`) VALUES ('$id','1')");
         $req->execute();

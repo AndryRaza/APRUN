@@ -21,13 +21,13 @@ require_once '../includes/header.php';
             <a href="admin_liste_formateurs.php?page=1">
                 <img src="../ressources/icones/icone9.png" class=" border border-rounded"  width="150px" height="150px">
             </a>
-            <p>Liste formateurs</p>
+            <p>Liste des formateurs</p>
         </div>
         <div class="col d-flex align-items-center flex-column py-5">
             <a href="admin_liste_tuteurs.php?page=1">
                 <img src="../ressources/icones/icone3.png" class=" border border-rounded"  width="150px" height="150px">
             </a>
-            <p>Liste Tuteurs</p>
+            <p>Liste des tuteurs</p>
         </div>
     </div>
 </section>

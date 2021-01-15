@@ -1,5 +1,5 @@
 <?php
-$titre = 'Liste des formateurs';
+$titre = 'Liste des tuteurs';
 $allow = '0';
 require_once '../includes/header.php';
 require_once '../includes/fonctions.php';
@@ -20,7 +20,7 @@ require_once '../includes/fonctions.php';
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
                     <th scope="col">Adresse mail</th>
-                    <th scope="col"></th>
+                    <th scope="col">Voir sa liste d'apprenants</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,9 +30,7 @@ require_once '../includes/fonctions.php';
             </tbody>
         </table>
     </div>
-    <?php 
-        require_once '../includes/pagination_tuteur.php';
-    ?>
+
 </section>
 
 <?php

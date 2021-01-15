@@ -32,11 +32,13 @@ $limit_result = ($page - 1) * $results_per_page;
 
 //On réalise une jointure, on récupère dans un tableau l'id de l'utilisateur qui cherche à se connecter, ainsi que son mail, mdp et son rôle
 $req = $bdd->prepare(" SELECT utilisateur.id_user AS id, utilisateur.nom AS nom_user , utilisateur.prenom AS prenom_user, utilisateur.email AS email, promotion.nom AS promo_nom, utilisateur_role.id_role AS user_role, promotion.debut AS promo_debut, promotion.fin AS promo_fin
-                        FROM `utilisateur`  
+                        FROM `utilisateur_role`  
+                        INNER JOIN `utilisateur` ON utilisateur.id_user = utilisateur_role.id_user
                         INNER JOIN `utilisateur_promotion` ON utilisateur.id_user = utilisateur_promotion.id_user
-                        INNER JOIN `promotion` ON promotion.id_promo = utilisateur_promotion.id_promo
-                        INNER JOIN `utilisateur_role` ON utilisateur.id_user = utilisateur_role.id_user
+                        INNER JOIN `promotion` ON promotion.id_promo = utilisateur_promotion.id_promo 
+                        WHERE id_role = '1'
                         LIMIT  $limit_result , $results_per_page  
+                      
                         ");
 
 $req->execute();
@@ -44,7 +46,7 @@ $req->execute();
 $tab_utilisateur = $req->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($tab_utilisateur as $key => $value) {
-    if ($value['user_role'] === '1') {
+    
 ?>
         <tr>
             <th scope="row"><?= $value['nom_user'] ?></th>
@@ -52,7 +54,7 @@ foreach ($tab_utilisateur as $key => $value) {
             <td><?= $value['promo_debut'] . '-' . $value['promo_fin'] . ' - ' . $value['promo_nom']  ?></td>
             <td><?= $value['email'] ?></td>
             <td>non</td>
-            <td>
+            <td class="d-flex justify-content-center">
                 <form action="../pages/formulaire_modification.php" method="POST">
                     <input type="hidden" name="id" value="<?= $value['id'] ?>">
                     <input type="hidden" name="role" value="<?= $value['user_role'] ?>">
@@ -70,7 +72,7 @@ foreach ($tab_utilisateur as $key => $value) {
             </td>
         </tr>
 
-<?php           }
+<?php           
 }
 require_once 'pagination.php';
 pagination($number_of_results,$page,'admin_liste_apprenants');

@@ -9,12 +9,11 @@ header{
 }
 
 footer{
+  position:absolute;
   background: linear-gradient(#a5eeeb, #9198e5);
-    margin-top:40vh;
+    margin-top:100vh;
 
 }
-
-
 
 #liste_apprenant_tuteur a{
     text-decoration: none;

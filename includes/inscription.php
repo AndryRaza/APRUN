@@ -106,8 +106,12 @@ if (isset($_POST['btn_inscription'])) {
             //on initialise son nbre d'heure d'absence
             $requete_absence = "INSERT INTO `nbre_absence_utilisateur`(`id_user`, `nbre`) VALUES ('$id','0')";
             $bdd->exec($requete_absence);
+
+            $req = $bdd->prepare("INSERT INTO `utilisateur_tuteur`(`id_user_apprenant`, `id_user_tuteur`) VALUES ('$id',NULL)");
+            $req->execute();
+            $req->closeCursor();
         }
-     
+
         header('location: ../pages/admin_accueil_creation.php?success_user="yes"');
         exit();
     } else {
