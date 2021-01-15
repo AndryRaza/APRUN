@@ -34,8 +34,9 @@ if (isset($_GET['error'])) {
 
             <label class="mb-2" for="role">Statut</label>
             <select class="form-control <?php if(!$erreur['statut']) echo 'mb-4' ; else {echo 'erreur';}?>" name="role" id="role" required onchange="check();">
-                <option>Formateur</option>
-                <option>Apprenant</option>
+                <option value="2">Formateur</option>
+                <option value="1">Apprenant</option>
+                <option value="3">Tuteur</option>
             </select>
             <div class="erreur mb-4">
                 <?php if ($erreur['statut']) echo $erreur['statut']; ?>
@@ -61,15 +62,6 @@ if (isset($_GET['error'])) {
             <input class=" form-control <?php if(!$erreur['mdp']) echo 'mb-4'; else {echo 'erreur';} ?>" type="password" name="mdp" id="mdp" pattern="[0-9a-z - ' @ ( ) ! # é è ]+" required>
             <div class="erreur mb-4">
                 <?php if ($erreur['mdp']) echo $erreur['mdp']; ?>
-            </div>
-
-            <label class="mb-2" for="statut_tuteur">Tuteur</label>
-            <select class="form-control <?php if(!$erreur['statut_tuteur']) echo 'mb-4'; else {echo 'erreur';} ?> " name="statut_tuteur" id="statut_tuteur" required>
-                <option>Oui</option>
-                <option>Non</option>
-            </select>
-            <div class="erreur mb-4">
-                <?php if ($erreur['statut_tuteur']) echo $erreur[6]; ?>
             </div>
 
             <input type="hidden" name="date_creation" value="<?= date('Y-m-d h:i:s'); ?>" required>

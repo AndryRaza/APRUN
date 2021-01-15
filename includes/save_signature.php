@@ -9,9 +9,13 @@ $pass = NULL;
 $bdd = new PDO("mysql:host=$servname;dbname=$dbname", $user, $pass);
 $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 */
-
+session_start();
 
 $data = $_POST['url'];
+
+$id = uniqid();
+
+$_SESSION['absence_imprimer'] = $id;
 
 
 
@@ -25,7 +29,7 @@ $image_type = $image_type_aux[1]; //contient le format
 
 $image_base64 = base64_decode($image_parts[1]);
 
-$file = UPLOAD_DIR . uniqid() . '.png';
+$file = UPLOAD_DIR . $_SESSION['user'] . '.png';
 
 $ifp = fopen( $file, 'wb' ); 
 

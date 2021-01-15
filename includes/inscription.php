@@ -20,10 +20,10 @@ $mail_existant = false;
 
 if (isset($_POST['btn_inscription'])) {
     $erreur = [
-        'nom' => NULL, 'prenom' => NULL, 'statut' => NULL, 'promotion' => NULL, 'email' => NULL, 'mdp' => NULL, 'statut_tuteur' => NULL
+        'nom' => NULL, 'prenom' => NULL, 'statut' => NULL, 'promotion' => NULL, 'email' => NULL, 'mdp' => NULL
 
     ];  //Tableau qui contiendra les messages d'erreur
- 
+
     /*On vérifie que les données envoyées ne sont pas vides */
     if (!$_POST['nom']) {    //On regarde si le champ nom n'est pas vide
         $erreur['nom'] = 'Veuillez rentrer un nom';
@@ -37,24 +37,21 @@ if (isset($_POST['btn_inscription'])) {
         $donnees['nom'] = $prenom;
     }*/
 
-    if (!$_POST['role'] || ($_POST['role'] !== 'Apprenant' && $_POST['role'] !== 'Formateur')) { //On regarde si le champ prénom n'est pas vide
+    /*
+    if (!$_POST['role'] && ($_POST['role'] !== '1' && $_POST['role'] !== '2'&& $_POST['role'] !== '3')) { //On regarde si le champ prénom n'est pas vide
         $erreur['statut'] = 'Veuillez choisir un statut';
     }
-
+*/
     if (!$_POST['promotion']) {  //On regarde si le champ email n'est pas vide
         $erreur['promotion'] = 'Veuillez choisir une promotion';
     }
 
     if (!$_POST['email']) {  //On regarde si le champ email n'est pas vide
         $erreur['email'] = 'Veuillez rentrer un email';
-    } 
+    }
 
     if (!$_POST['mdp']) {        //On regarde si le champ mdp n'est pas vide
         $erreur['mdp'] = 'Veuillez rentrer un mdp';
-    } 
-
-    if (!$_POST['statut_tuteur'] || ($_POST['statut_tuteur'] !== 'Oui' && $_POST['statut_tuteur'] !== 'Non')) {        
-        $erreur['statut_tuteur'] = 'Veuillez choisir une option';
     }
 
 
@@ -69,7 +66,7 @@ if (isset($_POST['btn_inscription'])) {
     /********************/
 
     if ($erreur === [
-        'nom' => NULL, 'prenom' => NULL, 'statut' => NULL, 'promotion' => NULL, 'email' => NULL, 'mdp' => NULL, 'statut_tuteur' => NULL
+        'nom' => NULL, 'prenom' => NULL, 'statut' => NULL, 'promotion' => NULL, 'email' => NULL, 'mdp' => NULL
 
     ] && !$email_existant) {   //Si le tableau contenant les erreurs est vide, on peut enregistrer les données envoyées par le formulaire
 
@@ -81,22 +78,11 @@ if (isset($_POST['btn_inscription'])) {
         $mdp = hash('md5', $_POST['mdp']);
         $date_creation = $_POST['date_creation'];
 
-        $role = 1;  //Par défaut le rôle de l'utilisateur est 1 : apprenant
+        $role = $_POST['role'];  //Par défaut le rôle de l'utilisateur est 1 : apprenant
 
         /*Si il s'agit d'un apprenant, il faut récupérer l'id de la promotion choisie */
-        if (validate($_POST['role']) === 'Apprenant') {
+        if ($_POST['role'] === '1') {
             $promotion = validate($_POST['promotion']);
-        }
-
-        /**************************/
-        /*
-        if ($_POST['statut_tuteur'] === 'Oui') {    //On regarde si l'utilisateur aura un statut de tuteur ou pas
-            $requete_role = "INSERT INTO `utilisateur_role`(`id_user`, `id_role`) VALUES ('$id','3')";
-            $bdd->exec($requete_role);
-        }
-*/
-        if (validate($_POST['role']) === 'Formateur') {   //On regarde si l'utilisateur sera un formateur ou pas
-            $role = 2;  //Si ca se trouve être un formateur, on passe à 2
         }
 
         /*Partie enregistrement dans la bdd */
@@ -111,7 +97,7 @@ if (isset($_POST['btn_inscription'])) {
         $bdd->exec($requete_role);
 
         //On va l'assigner à une promotion si l'utilisateur est défini comme un apprenant 
-        if ($_POST['role'] === 'Apprenant') {
+        if ($_POST['role'] === '1') {
 
             //on enregistre sa promotion
             $requete_promotion = "INSERT INTO `utilisateur_promotion`(`id_user`, `id_promo`, `entree`) VALUES ('$id','$promotion','$date_creation')";
@@ -121,8 +107,7 @@ if (isset($_POST['btn_inscription'])) {
             $requete_absence = "INSERT INTO `nbre_absence_utilisateur`(`id_user`, `nbre`) VALUES ('$id','0')";
             $bdd->exec($requete_absence);
         }
-        /***********************/
-
+     
         header('location: ../pages/admin_accueil_creation.php?success_user="yes"');
         exit();
     } else {

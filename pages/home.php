@@ -14,11 +14,15 @@ if (!isset($_SESSION['promo'])){
     $_SESSION['promo'] = "";
 }
 
+if (!isset($_SESSION['absence_imprimer'])){
+    $_SESSION['absence_imprimer'] = "";
+}
+
 
 ?>
 
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 
 <head>

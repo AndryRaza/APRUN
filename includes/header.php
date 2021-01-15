@@ -37,6 +37,9 @@ $nbre = $req->fetch();
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.2.621/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.2.621/js/jszip.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.2.621/js/kendo.all.min.js"></script>
     <script src="../scripts/script.js"></script>
     <script src="../scripts/script_signature.js"></script>
     <title><?= $titre ?></title>
@@ -62,7 +65,8 @@ $nbre = $req->fetch();
                 <div class="justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <?php if ($allow ===  "0" && $nbre['COUNT(id)'] > 0) { ?> <li class="nav-item"><a href="admin_messagerie.php"><button type="button" class="btn btn-info">
-                                        Message(s) non lu(s) <span class="badge bg-danger"><?= $nbre['COUNT(id)']; // Termine le traitement de la requête?></span>
+                                        Message(s) non lu(s) <span class="badge bg-danger"><?= $nbre['COUNT(id)']; // Termine le traitement de la requête
+                                                                                            ?></span>
                                     </button></a></li> <?php } ?>
                         <li class="nav-item">
                             <form action="../includes/connexion.php" method="POST">

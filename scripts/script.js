@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
-    
+
     navLinks: true, // can click day/week names to navigate views
     dayMaxEvents: true, // allow "more" link when too many events
     events: {
@@ -32,10 +32,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 var check = function () {
-  if (document.getElementById('role').value === 'Apprenant') {
+  if (document.getElementById('role').value === '1') {
     document.getElementById('promotion').style.display = 'block';
   }
-  if (document.getElementById('role').value === 'Formateur') {
+  if (document.getElementById('role').value === '2' || document.getElementById('role').value === '3') {
     document.getElementById('promotion').style.display = 'none';
   }
 
@@ -83,7 +83,7 @@ function afficher_modal_suppression(nom, id, role) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Voulez-vous vraiment supprimer l'utilisateur "`+nom + `" ?
+                Voulez-vous vraiment supprimer l'utilisateur "`+ nom + `" ?
             </div>
             <div class="modal-footer">
                 <form action="formulaire_modification.php" method="POST">
@@ -99,4 +99,58 @@ function afficher_modal_suppression(nom, id, role) {
 
   `;
   $("#exampleModal").modal('show');
+}
+
+function afficher_modal_imprimer_absence(date, promotion, id_img) {
+
+
+  document.getElementById('afficher_modal_imprimer_absence').innerHTML = `
+  <div class="modal fade" id="exampleModal_" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Confirmation de suppression</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="pdf">
+          <section class="container d-flex flex-column">
+          <h1 class="text-center">Feuille d'émargement du` + date + `</h1>
+          <h2 class="text-center">Promotion - `+ promotion + `</h2>
+          <div class="align-self-center d-flex flex-column align-items-center">
+              <h2>Absent(s)</h2>
+              <ul>
+                  <li>John Snow</li>
+                  <li>John Sun</li>
+              </ul>
+              <img class="w-50 h-50" src="../ressources/signature/`+ id_img +`.png" alt="signature">
+          </div>
+      </section>
+          </div>
+          <div class="modal-footer">
+              <button type="button" onclick="ExportPdf()" class="btn btn-primary">Télécharger</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+  `;
+
+  //document.getElementById('liste_absence').innerHTML = liste;
+
+  $("#exampleModal_").modal('show');
+}
+
+function ExportPdf() {
+  kendo.drawing
+    .drawDOM("#pdf",
+      {
+        paperSize: "A4",
+        margin: { top: "1cm", bottom: "1cm" },
+        scale: 0.8,
+        height: 500
+      })
+    .then(function (group) {
+      kendo.drawing.pdf.saveAs(group, "Exported.pdf")
+    });
 }

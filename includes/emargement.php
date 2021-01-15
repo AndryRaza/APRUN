@@ -30,38 +30,10 @@ if (isset($_POST['valider_promo_formateur'])) {
     $appel_fait = false;
 
 
-
+    $nom_promo =  $tab_promotion['debut'] . '-' . $tab_promotion['fin'] . ' - ' . $tab_promotion['nom'] ;
 
 
 ?>
-
-    <script>
-        /*
-                <?php
-                /*
-                foreach ($tab_utilisateur as $key => $value) { ?>
-
-                    var present_<?= $value['id_user'] ?> = document.getElementById('present_<?= $value['id_user'] ?>');
-                    var absent_<?= $value['id_user'] ?> = document.getElementById('absent_<?= $value['id_user'] ?>')
-
-                    present_<?= $value['id_user'] ?>.addEventListener("click", checked_present_<?= $value['id_user'] ?>);
-                    absent_<?= $value['id_user'] ?>.addEventListener("click",checked_absent_<?= $value['id_user'] ?>);
-
-                    function checked_present_<?= $value['id_user'] ?>() {
-                        present_<?= $value['id_user'] ?>.checked = true;
-                        absent_<?= $value['id_user'] ?>.checked = false;
-                    }
-
-                    function checked_absent_<?= $value['id_user'] ?>() {
-                        absent_<?= $value['id_user'] ?>.checked = true;
-                        present_<?= $value['id_user'] ?>.checked = false;
-                    }
-
-                <?php    }*/
-                ?>
-          */
-    </script>
-
     <div class="d-flex flex-column text-center mt-5">
         <h1>
             Feuille d'émargement
@@ -108,17 +80,19 @@ if (isset($_POST['valider_promo_formateur'])) {
                 signatureCapture();
             </script>
 
-            <button type="button" onclick="signatureSave()">Save signature</button>
+            <button type="button" class="btn btn-secondary" onclick="signatureSave()">Save signature</button>
 
-
-            <button type="button" onclick="signatureClear()">Clear signature</button>
+            <button type="button" class="btn btn-secondary" onclick="signatureClear()">Clear signature</button>
             </br>
             <img id="saveSignature" alt="Saved image png" />
             <br>
-
+            
             <input type="submit" class="btn btn-primary mt-5" value="Valider" name="valider_emargement">
         </form>
     </section>
 
+    <button type="button" onclick="afficher_modal_imprimer_absence(<?= date('d-m-Y'); ?>, '<?= $nom_promo ?>', '<?= $_SESSION['user']; ?>')">Imprimer</button>
+    <div id="afficher_modal_imprimer_absence"></div>
 <?php
+
 }

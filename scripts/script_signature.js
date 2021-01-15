@@ -111,8 +111,8 @@ function signatureSave() {
     var canvas = document.getElementById("newSignature"); //On enregistre l'url de l'image
     var dataURL = canvas.toDataURL("image/png");
     document.getElementById("saveSignature").src = dataURL;
-
-    $.post('../includes/save_signature.php',{url:dataURL})
+    
+    $.post('../includes/save_signature.php',{url:dataURL});
 
 };
 
@@ -120,4 +120,5 @@ function signatureClear() {
     var canvas = document.getElementById("newSignature");
     var context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
+    document.getElementById('afficher_modal_imprimer_absence').innerHTML = "";
 }
