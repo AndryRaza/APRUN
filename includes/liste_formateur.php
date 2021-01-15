@@ -45,7 +45,6 @@ foreach ($tab_utilisateur as $key => $value) {
             <th scope="row"><?= $value['nom_user'] ?></th>
             <td><?= $value['prenom_user'] ?></td>
             <td><?= $value['email'] ?></td>
-            <td>non</td>
             <td>
                 <form action="../pages/formulaire_modification.php" method="POST">
                     <input type="hidden" name="id" value="<?= $value['id'] ?>">
@@ -64,3 +63,5 @@ foreach ($tab_utilisateur as $key => $value) {
 
 <?php          }
 }
+require_once 'pagination.php';
+pagination($number_of_results,$page,'admin_liste_formateurs');

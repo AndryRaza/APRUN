@@ -2,6 +2,7 @@
 
 require_once 'bdd.php';
 
+
 /*Partie pagination */
 
 $req = $bdd->prepare("SELECT COUNT(*) FROM `utilisateur_role` where id_role = '1' ");
@@ -71,3 +72,5 @@ foreach ($tab_utilisateur as $key => $value) {
 
 <?php           }
 }
+require_once 'pagination.php';
+pagination($number_of_results,$page,'admin_liste_apprenants');

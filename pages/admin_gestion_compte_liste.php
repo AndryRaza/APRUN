@@ -10,7 +10,7 @@ require_once '../includes/header.php';
 </section>
 
 <section class="container">
-    <div class="row row-cols-md-2 row-cols-1">
+    <div class="row row-cols-md-3 row-cols-1">
         <div class="col d-flex align-items-center flex-column py-5">
             <a href="admin_liste_apprenants.php?page=1">
                 <img src="../ressources/icones/icone8.png" class=" border border-rounded"  width="150px" height="150px">
@@ -22,6 +22,12 @@ require_once '../includes/header.php';
                 <img src="../ressources/icones/icone9.png" class=" border border-rounded"  width="150px" height="150px">
             </a>
             <p>Liste formateurs</p>
+        </div>
+        <div class="col d-flex align-items-center flex-column py-5">
+            <a href="admin_liste_tuteurs.php?page=1">
+                <img src="../ressources/icones/icone3.png" class=" border border-rounded"  width="150px" height="150px">
+            </a>
+            <p>Liste Tuteurs</p>
         </div>
     </div>
 </section>

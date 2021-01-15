@@ -20,7 +20,6 @@ require_once '../includes/fonctions.php';
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
                     <th scope="col">Adresse mail</th>
-                    <th scope="col">Tuteur</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -31,9 +30,6 @@ require_once '../includes/fonctions.php';
             </tbody>
         </table>
     </div>
-    <?php 
-        require_once '../includes/pagination_formateur.php';
-    ?>
 </section>
 
 <?php
