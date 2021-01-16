@@ -12,7 +12,6 @@ $req->execute();
 $tab = $req->fetchAll(PDO::FETCH_ASSOC);
 $req->closeCursor();
 
-
 ?>
 
 <section class="container-fluid py-5">

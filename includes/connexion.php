@@ -18,16 +18,6 @@ if (isset($_POST['connexion'])) {
 
     $tab_utilisateur = $req->fetchAll(PDO::FETCH_ASSOC);
 
-
-    /* Se connecter en tant qu'admin - A CHANGER ET A STOCKER DANS LA BDD */
-    /*
-    if ($_POST['mail_utilisateur'] === 'admin' && $_POST['mdp_utilisateur'] === 'admin') {
-        $_SESSION['role']  = '0';
-        header('Location: ../pages/admin_accueil.php');
-        exit();
-    }
-    */
-
     $login = validate($_POST['mail_utilisateur']);
     $pass = hash('md5', $_POST['mdp_utilisateur']);
 
@@ -69,6 +59,11 @@ if (isset($_POST['connexion'])) {
 
     if ($role === "2") {   //Si l'utilisateur un est formateur
         header('Location: ../pages/formateur_accueil.php');
+        exit();
+    }
+
+    if ($role === "3") {   //Si l'utilisateur un est formateur
+        header('Location: ../pages/tuteur_accueil.php?page=1');
         exit();
     }
 

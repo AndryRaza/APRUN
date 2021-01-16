@@ -1,5 +1,6 @@
 <?php
 $titre = 'Accueil tuteur';
+$allow = '3';
 require_once '../includes/header.php';
 
 ?>
@@ -8,20 +9,24 @@ require_once '../includes/header.php';
     <h1 class="text-white text-center" style="padding:5%">Page tuteur</h1>
 </section>
 
-<section class="container">
-    <div class="row row-cols-md-2 row-cols-1">
-        <div class="col d-flex align-items-center flex-column py-5">
-            <a href="tuteur_listeapprenant.php">
-                <img src="../ressources/icones/icone1.png" class=" border border-rounded" width="200px" height="200px">
-            </a>
-            <p>Accèder à sa liste d'apprenant</p>
-        </div>
-        <div class="col d-flex align-items-center flex-column py-5">
-            <a href="apprenant_edt.php">
-                <img src="../ressources/icones/icone2.png" class=" border border-rounded" width="200px" height="200px">
-            </a>
-            <p>Accèder à son emploi du temps</p>
-        </div>
+<section class="container text-center bg-light py-5">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Promotion</th>
+                    <th scope="col">Adresse mail</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                    require_once '../includes/liste_tuteur_accueil.php';
+                ?>
+            </tbody>
+        </table>
     </div>
 </section>
 <?php

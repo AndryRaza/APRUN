@@ -60,6 +60,9 @@ $nbre = $req->fetch();
                 if ($_SESSION['role'] === '2') {
                     echo 'formateur_accueil.php';
                 }
+                if ($_SESSION['role'] === '3') {
+                    echo 'tuteur_accueil.php?page=1';
+                }
                 ?>
                 ">APRUN</a>
                 <div class="justify-content-end" id="navbarNav">

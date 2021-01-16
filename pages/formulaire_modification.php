@@ -72,6 +72,8 @@ if (isset($_POST['modifier'])) {
 if (isset($_POST['supprimer'])) {
 
     $id = $_POST['id']; //On récupère l'id de l'utilisateur
+    $role = $_POST['role'];
+
     $servername = "localhost";
     $username = "root";
     $password = NULL;
@@ -79,17 +81,32 @@ if (isset($_POST['supprimer'])) {
 
     $bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     $req_user = $bdd->prepare("DELETE FROM `utilisateur` WHERE id_user = '$id'");
     $req_user->execute();
+
     $req_user_promo = $bdd->prepare("DELETE FROM `utilisateur_promotion` WHERE id_user = '$id'");
     $req_user_promo->execute();
+
     $req_user_role = $bdd->prepare("DELETE FROM `utilisateur_role` WHERE id_user = '$id'");
     $req_user_role->execute();
+
     $req_user_absence = $bdd->prepare("DELETE FROM `absence` WHERE id_user = '$id'");
     $req_user_absence->execute();
+
     $req_user_nbre_absence = $bdd->prepare("DELETE FROM `nbre_absence_utilisateur` WHERE id_user = '$id'");
     $req_user_nbre_absence->execute();
-    
+
+    if ($role === '1') {
+        $req_user_tuteur = $bdd->prepare("DELETE FROM `utilisateur_tuteur` WHERE id_user_apprenant = '$id'");
+        $req_user_tuteur->execute();
+    }
+
+    if ($role === '3') {
+        $req_user_tuteur = $bdd->prepare("UPDATE `utilisateur_tuteur` SET `id_user_tuteur`= NULL WHERE id_user_tuteur = '$id'");
+        $req_user_tuteur->execute();
+    }
+
     header('Location: admin_gestion_compte_liste.php');
 }
 
