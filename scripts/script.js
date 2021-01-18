@@ -169,7 +169,6 @@ $(document).ready(function() {
 function checked_un(id) {
   document.getElementById("present_"+id).checked = true;
   document.getElementById("absent_"+id).checked = false;
-  console.log('in');
 }
 
 function checked_deux(id) {
