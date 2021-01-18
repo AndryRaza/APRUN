@@ -63,7 +63,7 @@ function affichage_messagerie()
 {
     require_once 'bdd.php';
     $req_ = $bdd->prepare("SELECT utilisateur.email AS email, absence_justificatif.date AS date, 
-                            absence_justificatif.description AS description, absence_justificatif.motif AS motif, utilisateur.id_user AS id_user
+                            absence_justificatif.description AS description, absence_justificatif.motif AS motif, utilisateur.id_user AS id_user, absence_justificatif.justificatif as justificatif
                      
                     FROM absence_justificatif 
                     INNER JOIN utilisateur ON utilisateur.id_user = absence_justificatif.id_user
@@ -89,7 +89,7 @@ function affichage_messagerie()
                     <input type="hidden" class="date" name="date" value="<?= $value['date'] ?>">
                     <input type="hidden" class="motif" name="motif" value="<?= $value['motif'] ?>">
                     <input type="hidden" class="description" name="description" value="<?= $value['description'] ?>">
-                    <button type="button" class="btn btn-primary"  value="Voir" onclick="afficher_modal_justificatif( '<?= $value['email'] ?> ','<?= $value['date'] ?>' , '<?= $value['motif'] ?> ', '<?= $value['description'] ?> ')"> Voir </button>
+                    <button type="button" class="btn btn-primary"  value="Voir" onclick="afficher_modal_justificatif( '<?= $value['email'] ?> ','<?= $value['date'] ?>' , '<?= $value['motif'] ?> ','<?= $value['justificatif'] ?>' ,'<?= $value['description'] ?> ')"> Voir </button>
                 </form>
                 <form action="../includes/valider_justificatif.php" method="POST">
                     <input type="hidden" name="id_user" value="<?= $value['id_user'] ?>">

@@ -41,7 +41,7 @@ var check = function () {
 
 }
 
-function afficher_modal_justificatif(email, date, motif, description) {
+function afficher_modal_justificatif(email, date, motif, pdf, description) {
 
   document.getElementById('afficher_modal').innerHTML = `
     
@@ -57,7 +57,7 @@ function afficher_modal_justificatif(email, date, motif, description) {
               <p>
               `+ description + `
              </p>
-              <div><a href="#" class="text-decoration-none">Voir pdf</a></div>
+              <div><a href="../ressources/pdf/`+ pdf  + `.pdf"class="text-decoration-none"  target="_blank">Voir pdf</a></div>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="reset()">Fermer</button>
