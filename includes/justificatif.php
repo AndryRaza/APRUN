@@ -40,7 +40,7 @@ if (isset($_POST['envoi_justificatif'])) {
         echo $erreur;
     }*/
 
-    
+
     $id_fichier = md5(uniqid(rand(), true));
     move_uploaded_file($_FILES['justificatif']['tmp_name'], $dossier . $id_fichier . '.pdf');
 
@@ -66,7 +66,7 @@ if (isset($_POST['envoi_justificatif'])) {
     }
 
     if ($justificatif_exist) {  //Si le justificatif a déja été envoyé, on le modifie 
-        $req = $bdd->prepare("UPDATE `absence_justificatif` SET `motif`='$motif',`date`='$date_motif',`description`='$description_motif' WHERE id_user = '$id_user' and  date = '$date_motif'");
+        $req = $bdd->prepare("UPDATE `absence_justificatif` SET `motif`='$motif',`date`='$date_motif',`justificatif`='$id_fichier',`description`='$description_motif' WHERE id_user = '$id_user' and  date = '$date_motif'");
         $req->execute();
         $req->closeCursor();
     } else {    //Sinon on le crée
