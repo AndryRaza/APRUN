@@ -49,7 +49,7 @@ $req->closeCursor();
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="../includes/justificatif.php" method="POST">
+                        <form action="../includes/justificatif.php" method="POST" enctype="multipart/form-data">
                             <select class="form-control" id="motif" name="motif">Choisir un motif
                                 <option value="Maladie">Maladie</option>
                                 <option value="Rendez-vous">Rendez-vous</option>
@@ -64,13 +64,13 @@ $req->closeCursor();
 
                                 ?>
                             </select>
-                            <input type="file" class="form-control my-2" id="justificatif" name="justificatif">
+                            <input type="file" class="form-control my-2" id="justificatif" name="justificatif"  accept="application/pdf">
                             <textarea class="form-control my-2" id="description_motif" name="description_motif" rows="10"></textarea>
                             <input type="hidden" name="id_user" value="<?php echo $_SESSION['user']; ?>">
                             <input type="submit" class="btn btn-secondary" value="Envoyer" name="envoi_justificatif">
                         </form>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer">  
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                     </div>
                 </div>
