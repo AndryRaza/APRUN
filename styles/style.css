@@ -1,6 +1,13 @@
+/* fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
 #connexion{
     height:100vh;
-    /*background:url('../ressources/img/bg_home.jpg');*/
     background: linear-gradient(#a5eeeb, #9198e5);
 }
 
@@ -9,9 +16,9 @@ header{
 }
 
 footer{
-  position:absolute;
+ 
   background: linear-gradient(#a5eeeb, #9198e5);
-    margin-top:100vh;
+    margin-top:20vh;
 
 }
 

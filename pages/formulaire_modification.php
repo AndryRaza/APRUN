@@ -1,13 +1,19 @@
 <?php
-$titre = 'Formulaire d\'inscription';
+$titre = 'Formulaire de modification';
 $allow = '0';
 require_once '../includes/fonctions.php';
 require_once '../includes/header.php';
 
-if (isset($_POST['modifier'])) {
-    $id = $_POST['id']; //On récupère l'id de l'utilisateur
-    $role = $_POST['role']; //De son rôle qui déterminera certains paramètres à afficher ou non
+if (isset($_POST['modifier']) || isset($_GET['error'])) {
 
+    if (isset($_GET['error'])) {
+        $erreur = unserialize($_GET['error']);
+        $id = $erreur['id']; //On récupère l'id de l'utilisateur
+        $role = $erreur['role']; //De son rôle qui déterminera certains paramètres à afficher ou non
+    } else {
+        $id = $_POST['id']; //On récupère l'id de l'utilisateur
+        $role = $_POST['role']; //De son rôle qui déterminera certains paramètres à afficher ou non
+    }
 
     $servername = "localhost";
     $username = "root";
@@ -46,9 +52,16 @@ if (isset($_POST['modifier'])) {
 
                     <label class="mb-2" for="nom">Nom</label>
                     <input class=" form-control mb-4" value="<?= $value['nom_user'] ?>" type="text" name="nom" id="nom" required pattern="[A-Za-z - ]+">
+                    <div class="erreur mb-4">
+                        <?php if (isset($erreur['nom'])) echo $erreur['nom']; ?>
+                    </div>
 
                     <label class="mb-2" for="prenom">Prenom</label>
                     <input class=" form-control mb-4" type="text" value="<?= $value['prenom_user'] ?>" name="prenom" id="prenom" required pattern="[A-Za-z - é è ]+">
+                    <div class="erreur mb-4">
+                        <?php if (isset($erreur['prenom'])) echo $erreur['prenom']; ?>
+                    </div>
+
 
                     <?php if ($role === '1') { ?>
                         <label class="mb-2" for="promotion">Promotion :</label>
@@ -56,11 +69,18 @@ if (isset($_POST['modifier'])) {
                             <?php affichage_promotion(); ?>
                         </select>
                     <?php } ?>
+                    <div class="erreur mb-4">
+                        <?php if (isset($erreur['promotion'])) echo $erreur['promotion']; ?>
+                    </div>
 
                     <label class="mb-2" for="email">Adresse email</label>
                     <input class=" form-control mb-4" value="<?= $value['email'] ?>" type="mail" name="email" id="email" required>
+                    <div class="erreur mb-4">
+                        <?php if (isset($erreur['email'])) echo $erreur['email']; ?>
+                    </div>
 
                     <input type="hidden" value="<?= $id ?>" name="id">
+                    <input type="hidden" value="<?= $role ?>" name="role">
                     <input type="submit" class="btn btn-secondary align-self-end" value="Modifier" name="btn_modifier" id="btn_modifier">
                 </form>
             </div>

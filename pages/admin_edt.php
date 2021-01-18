@@ -15,7 +15,7 @@ require_once '../includes/evenements_admin.php';
         <div class="col text-start">
             <form>
                 <input type="hidden" name="id_promo" value="<?= $id_promo ?>">
-                <button type="submit" name="modifier" class="btn btn-primary">Modifier</button>
+                <button type="submit" name="modifier" class="btn btn-primary" disabled>Modifier</button>
             </form>
         </div>
     </div>

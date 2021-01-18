@@ -19,20 +19,20 @@ require_once '../includes/header.php';
         </div>
         <div class="col d-flex align-items-center flex-column py-5">
             <a href="admin_gestion_compte_liste.php">
-                <img src="../ressources/icones/icone6.png"  width="150px" height="150px">
+                <img src="../ressources/icones/icone6.png" width="150px" height="150px">
             </a>
             <p>Gestion des comptes</p>
         </div>
         <div class="col d-flex align-items-center flex-column py-5">
             <a href="admin_choix_promo_edt.php">
-                <img src="../ressources/icones/icone2.png"  width="150px" height="150px">
+                <img src="../ressources/icones/icone2.png" width="150px" height="150px">
             </a>
             <p>Emploi du temps</p>
         </div>
 
         <div class="col d-flex align-items-center flex-column py-5">
             <a href="admin_messagerie.php">
-                <img src="../ressources/icones/icone4.png"  width="150px" height="150px">
+                <img src="../ressources/icones/icone4.png" width="150px" height="150px">
             </a>
             <p>Voir sa messagerie</p>
         </div>
@@ -41,10 +41,13 @@ require_once '../includes/header.php';
         </div>
 
         <div class="col d-flex align-items-center flex-column py-5">
-            <a href="apprenant_edt.php">
-                <img src="../ressources/icones/logout.png"  width="150px" height="150px">
-            </a>
-            <p>Déconnexion</p>
+
+            <form action="../includes/connexion.php" method="POST">
+                <button class="btn text-center" type="submit" name="deconnexion">
+                    <img  src="../ressources/icones/logout.png" width="150px" height="150px">
+                    <p>Déconnexion</p>
+                </button>
+            </form>
         </div>
 
     </div>

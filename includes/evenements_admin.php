@@ -24,7 +24,7 @@ $tab = $req->fetchALL(PDO::FETCH_ASSOC);
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'timeGridWeek',
             locale: 'fr',
-            buttonText: {
+            buttonText: {   
                 today: 'Aujourd\'hui',
                 month: 'Mois',
                 week: 'Semaine',
@@ -41,7 +41,7 @@ $tab = $req->fetchALL(PDO::FETCH_ASSOC);
             dayMaxEvents: true, // allow "more" link when too many events
             events: <?= json_encode($tab); ?>
 
-                ,
+                
 
         });
 
