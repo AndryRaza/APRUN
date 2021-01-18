@@ -153,3 +153,14 @@ function ExportPdf() {
       kendo.drawing.pdf.saveAs(group, "Exported.pdf")
     });
 }
+
+$(document).ready(function() {
+
+  function myFunction() {
+     setInterval(function() {
+          $('header#notification').load('#notification');
+      }, 1000);
+  };
+
+  myFunction();
+})
