@@ -30,7 +30,7 @@ if (isset($_POST['valider_promo_formateur'])) {
     $appel_fait = false;
 
 
-    $nom_promo =  $tab_promotion['debut'] . '-' . $tab_promotion['fin'] . ' - ' . $tab_promotion['nom'] ;
+    $nom_promo =  $tab_promotion['debut'] . '-' . $tab_promotion['fin'] . ' - ' . $tab_promotion['nom'];
 
 
 ?>
@@ -59,14 +59,16 @@ if (isset($_POST['valider_promo_formateur'])) {
                     <?php
                     foreach ($tab_utilisateur as $key => $value) {
                     ?>
+                        
                         <tr>
                             <th scope="row"><?= $value['nom_utilisateur'] ?></th>
                             <td><?= $value['prenom_utilisateur'] ?></td>
                             <td>
-                                <input type="checkbox" name="present_<?= $value['id_user'] ?>" id="present_<?= $value['id_user'] ?>" checked>
+                                <input type="checkbox" name="present_<?= $value['id_user'] ?>" id="present_<?= $value['id_user'] ?>" checked onclick="checked_un('<?= $value['id_user'] ?>')">
                             </td>
-                            <td><input type="checkbox" name="absent_<?= $value['id_user'] ?>" id="absent_<?= $value['id_user'] ?>"></td>
+                            <td><input type="checkbox" name="absent_<?= $value['id_user'] ?>" id="absent_<?= $value['id_user'] ?>" onclick="checked_deux('<?= $value['id_user'] ?>')"></td>
                         </tr>
+                        
                     <?php } ?>
                 </tbody>
             </table>
@@ -86,7 +88,7 @@ if (isset($_POST['valider_promo_formateur'])) {
             </br>
             <img id="saveSignature" alt="Saved image png" />
             <br>
-            
+
             <input type="submit" class="btn btn-primary mt-5" value="Valider" name="valider_emargement">
         </form>
     </section>
