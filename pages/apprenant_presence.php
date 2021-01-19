@@ -22,6 +22,8 @@ $req->execute();
 $promo = $req->fetch();
 $req->closeCursor();
 
+
+
 ?>
 
 <section class="container-fluid h-100 mt-5" id="presence_apprenant">
@@ -30,6 +32,7 @@ $req->closeCursor();
 
     <div class="container py-5 w-75 bg-light">
         <h2>Présence/Absence :</h2>
+  
         <p class="py-2">
            Totale d'heures de la formation : <?= $promo['duree'] ?> heures
         </p>
