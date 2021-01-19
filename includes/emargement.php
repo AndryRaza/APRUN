@@ -59,7 +59,7 @@ if (isset($_POST['valider_promo_formateur'])) {
                     <?php
                     foreach ($tab_utilisateur as $key => $value) {
                     ?>
-                        
+
                         <tr>
                             <th scope="row"><?= $value['nom_utilisateur'] ?></th>
                             <td><?= $value['prenom_utilisateur'] ?></td>
@@ -68,7 +68,7 @@ if (isset($_POST['valider_promo_formateur'])) {
                             </td>
                             <td><input type="checkbox" name="absent_<?= $value['id_user'] ?>" id="absent_<?= $value['id_user'] ?>" onclick="checked_deux('<?= $value['id_user'] ?>')"></td>
                         </tr>
-                        
+
                     <?php } ?>
                 </tbody>
             </table>
@@ -89,12 +89,16 @@ if (isset($_POST['valider_promo_formateur'])) {
             <img id="saveSignature" alt="Saved image png" />
             <br>
 
+          
+             <button disabled id="imprimer" class="btn btn-primary mt-3" type="button" onclick="afficher_modal_imprimer_absence('<?= date('d-m-Y'); ?>', '<?= $nom_promo ?>', '<?= $_SESSION['user']; ?>')">Imprimer</button>
+            <div id="afficher_modal_imprimer_absence"></div>
+       
+
             <input type="submit" class="btn btn-primary mt-5" value="Valider" name="valider_emargement">
         </form>
     </section>
 
-    <button type="button" onclick="afficher_modal_imprimer_absence(<?= date('d-m-Y'); ?>, '<?= $nom_promo ?>', '<?= $_SESSION['user']; ?>')">Imprimer</button>
-    <div id="afficher_modal_imprimer_absence"></div>
+
 <?php
 
 }

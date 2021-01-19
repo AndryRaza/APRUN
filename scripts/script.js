@@ -108,12 +108,12 @@ function afficher_modal_imprimer_absence(date, promotion, id_img) {
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Confirmation de suppression</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Feuille d'appel</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="pdf">
           <section class="container d-flex flex-column">
-          <h1 class="text-center">Feuille d'émargement du` + date + `</h1>
+          <h1 class="text-center">Feuille d'émargement du ` + date + `</h1>
           <h2 class="text-center">Promotion - `+ promotion + `</h2>
           <div class="align-self-center d-flex flex-column align-items-center">
               <h2>Absent(s)</h2>

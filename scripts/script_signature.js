@@ -114,6 +114,7 @@ function signatureSave() {
     
     $.post('../includes/save_signature.php',{url:dataURL});
 
+    $('#imprimer').prop('disabled', false); // Activer le bouton pour imprimer
 };
 
 function signatureClear() {
