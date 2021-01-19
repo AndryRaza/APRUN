@@ -127,7 +127,21 @@ if (isset($_POST['supprimer'])) {
         $req_user_tuteur->execute();
     }
 
-    header('Location: admin_gestion_compte_liste.php');
+    
+    if ($role === '1'){
+        header('Location: ../pages/admin_liste_apprenants.php?page=1&success_delete=yes');
+        exit();
+    }
+
+    if ($role === '2'){
+        header('Location: ../pages/admin_liste_formateurs.php?page=1&success_delete=yes');
+        exit();
+    }
+
+    if ($role === '3'){
+        header('Location: ../pages/admin_liste_tuteurs.php?page=1&success_delete=yes');
+        exit();
+    }
 }
 
 

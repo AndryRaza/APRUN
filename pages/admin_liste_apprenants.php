@@ -18,6 +18,11 @@ require_once '../includes/pagination.php';
             La modification a bien été effectuée !
         </div>
     <?php } ?>
+    <?php if (isset($_GET['success_delete'])) { ?>
+        <div class="alert alert-success w-50 align-self-center text-center" role="alert">
+           L'utilisateur a été supprimé !
+        </div>
+    <?php } ?>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead class="table-dark">

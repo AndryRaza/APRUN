@@ -57,17 +57,20 @@ if (isset($_POST['btn_modifier'])) {
 
         if ($role === '1'){
             header('Location: ../pages/admin_liste_apprenants.php?page=1&success=yes');
+            exit();
         }
 
         if ($role === '2'){
             header('Location: ../pages/admin_liste_formateurs.php?page=1&success=yes');
+            exit();
         }
 
         if ($role === '3'){
             header('Location: ../pages/admin_liste_tuteurs.php?page=1&success=yes');
+            exit();
         }
      
-        exit();
+        
     }else {
         $erreur_serialiser = serialize($erreur);
         header('location: ../pages/formulaire_modification.php?error=' . $erreur_serialiser);
