@@ -22,7 +22,7 @@ $req->closeCursor();
     <div class="container py-5 w-75 bg-light">
         <h2>Présence/Absence :</h2>
         <p class="py-2">
-            Nombres d'heures de présence :
+           Totale d'heures de la formation : 
         </p>
         <p class="py-2">
             Nombres d'heures d'absence : <?php

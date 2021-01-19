@@ -3,6 +3,7 @@ $titre = 'Liste des tuteurs';
 $allow = '0';
 require_once '../includes/header.php';
 require_once '../includes/fonctions.php';
+require_once '../includes/pagination.php';
 ?>
 
 <div class="d-flex flex-column text-center mt-5">
@@ -29,6 +30,9 @@ require_once '../includes/fonctions.php';
                 ?>
             </tbody>
         </table>
+        <?php 
+        pagination($number_of_results,$page,'admin_liste_tuteurs');
+        ?>
     </div>
 
 </section>

@@ -2,7 +2,8 @@
 
 function pagination($number_of_results,$page,$liste)
 //Nombre d'éléments à afficher par pages 
-{$results_per_page = 7;
+{
+    $results_per_page = 7;
 
 //Afficher le nombre de pages dispos 
 $number_of_pages = ceil($number_of_results / $results_per_page);
@@ -10,7 +11,7 @@ $number_of_pages = ceil($number_of_results / $results_per_page);
 ?>
 
 <nav aria-label="Page navigation example w-100" id="pagination">
-    <ul class="pagination">
+    <ul class="pagination  d-flex justify-content-center">
         <?php
         if ($page > 1) {
             echo '<li class="page-item"><a class="page-link" href="../pages/'.$liste.'?page=' . ($page - 1) . '"> Précédent </a> </li>';

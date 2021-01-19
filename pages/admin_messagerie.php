@@ -36,3 +36,11 @@ require_once '../includes/fonctions.php';
 require_once '../includes/footer.php';
 
 ?>
+
+<style>
+    
+footer{
+ background: linear-gradient(#a5eeeb, #9198e5);
+ margin-top:100vh;
+}
+</style>

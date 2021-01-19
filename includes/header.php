@@ -49,7 +49,7 @@ $nbre = $req->fetch();
     <header class="py-3">
         <nav class="navbar navbar-light">
             <div class="container d-flex">
-                <a class="navbar-brand w-25" href="
+                <a class="navbar-brand w-25 d-flex justify-content-end" href="
                 <?php
                 if ($_SESSION['role'] === '0') {
                     echo 'admin_accueil.php';
@@ -64,7 +64,7 @@ $nbre = $req->fetch();
                     echo 'tuteur_accueil.php?page=1';
                 }
                 ?>
-                ">APRUN</a>
+                "><img  src="../ressources/img/logo.png" width="250px" height="100px" ></a>
                 <div class="justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <?php if ($allow ===  "0" && $nbre['COUNT(id)'] > 0) { ?> <li class="nav-item"><a href="admin_messagerie.php">
@@ -79,7 +79,7 @@ $nbre = $req->fetch();
 
                         <li class="nav-item">
                             <form action="../includes/connexion.php" method="POST">
-                                <button class="btn" type="submit" name="deconnexion">Se déconnecter
+                                <button class="btn btn-primary" type="submit" name="deconnexion">Se déconnecter
                                     <img src="../ressources/icones/logout.png" width="20px" height="20px">
                                 </button>
                             </form>

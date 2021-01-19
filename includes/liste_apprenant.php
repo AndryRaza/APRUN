@@ -53,7 +53,6 @@ foreach ($tab_utilisateur as $key => $value) {
             <td><?= $value['prenom_user'] ?></td>
             <td><?= $value['promo_debut'] . '-' . $value['promo_fin'] . ' - ' . $value['promo_nom']  ?></td>
             <td><?= $value['email'] ?></td>
-            <td>non</td>
             <td class="d-flex justify-content-center">
                 <form action="../pages/formulaire_modification.php" method="POST">
                     <input type="hidden" name="id" value="<?= $value['id'] ?>">
@@ -74,5 +73,3 @@ foreach ($tab_utilisateur as $key => $value) {
 
 <?php           
 }
-require_once 'pagination.php';
-pagination($number_of_results,$page,'admin_liste_apprenants');

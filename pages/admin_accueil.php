@@ -52,6 +52,7 @@ require_once '../includes/header.php';
 
     </div>
 
+    <!--
     <form action="../includes/a_effacer.php" method="POST">
         <input type="submit" class="btn btn-primary" name="go_un" value="go_apprenant">
     </form>
@@ -60,6 +61,7 @@ require_once '../includes/header.php';
         <input type="submit" class="btn btn-primary" name="go_deux" value="go_formateur">
     </form>
 
+-->
 </section>
 
 <?php

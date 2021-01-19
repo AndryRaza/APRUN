@@ -75,6 +75,6 @@ if (isset($_POST['envoi_justificatif'])) {
         $req->execute();
         $req->closeCursor();
     }
-    header('Location: ../pages/apprenant_edt.php');
+    header('Location: ../pages/apprenant_edt.php?success="yes"');
     exit();
 }

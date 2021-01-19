@@ -3,6 +3,7 @@ $titre = 'Liste des apprenants';
 $allow = '0';
 require_once '../includes/header.php';
 require_once '../includes/fonctions.php';
+require_once '../includes/pagination.php';
 ?>
 <div class="d-flex flex-column text-center mt-5">
     <h1>
@@ -20,7 +21,6 @@ require_once '../includes/fonctions.php';
                     <th scope="col">Prénom</th>
                     <th scope="col">Promotion</th>
                     <th scope="col">Adresse mail</th>
-                    <th scope="col">Tuteur</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -30,6 +30,9 @@ require_once '../includes/fonctions.php';
                 ?>
             </tbody>
         </table>
+        <?php 
+            pagination($number_of_results,$page,'admin_liste_apprenants');
+        ?>
     </div>
 </section>
 

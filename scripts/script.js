@@ -49,7 +49,7 @@ function afficher_modal_justificatif(email, date, motif, pdf, description) {
   <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
           <div class="modal-header d-flex flex-column align-items-start">
-              <div>`+ email + `</div>
+              <div>De :`+ email + `</div>
               <div>Raison : `+ motif + `</div>
               <div>Date : `+ date + `</div>
           </div>

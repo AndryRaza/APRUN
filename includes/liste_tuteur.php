@@ -67,4 +67,3 @@ foreach ($tab_utilisateur as $key => $value) {
 <?php          
 }
 require_once 'pagination.php';
-pagination($number_of_results,$page,'admin_liste_tuteurs');

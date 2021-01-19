@@ -9,12 +9,16 @@ $allow = '1';
 
     <h1 class="mb-5">Bonjour</h1>
 
-    <section class="container">
+    <section class="container d-flex flex-column">
+        <?php if (isset($_GET['success'])) { ?>
+            <div class="alert alert-success w-50 align-self-center text-center" role="alert">
+                Envoi du justificatif réussi !
+            </div> <?php } ?>
         <div class="row row-cols-md-2 row-cols-1">
             <div class="col-md-3">
                 <div class="list-group" id="list-tab" role="tablist">
                     <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="home">Emploi du temps</a>
-                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Stats</a>
+                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Présence & envoi de justificatif</a>
                 </div>
             </div>
             <div class="col-md-9">
@@ -43,18 +47,18 @@ require_once '../includes/footer.php';
 ?>
 
 <style>
-    @media all and (max-width: 870px){
+    @media all and (max-width: 870px) {
 
-        
-.fc-header-toolbar{
-  display: flex;
-  flex-direction: column;
-}
-/*
+
+        .fc-header-toolbar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /*
 .fc-scrollgrid{
    
 }
 */
-}
-
+    }
 </style>
