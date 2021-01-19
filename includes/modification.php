@@ -2,12 +2,7 @@
 
 require_once('fonctions.php');
 
-$servername = "localhost";
-$username = "root";
-$password = NULL;
-$dbname = "bdd_app_aprun";
-
-$bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password); //On se connecte à notre bdd 
+require_once '../includes/bdd.php';
 
 if (isset($_POST['btn_modifier'])) {
 
@@ -46,7 +41,7 @@ if (isset($_POST['btn_modifier'])) {
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
         $email = $_POST['email'];
-
+        $role = $_POST['role'];
 
         //On va modifier les infos persos de l'utilisateur
         $req_utilisateur = $bdd->prepare("UPDATE `utilisateur` SET `nom`='$nom',`prenom`='$prenom',`email`='$email' WHERE id_user = '$id'");
@@ -59,7 +54,19 @@ if (isset($_POST['btn_modifier'])) {
             $req_promotion = $bdd->prepare("UPDATE `utilisateur_promotion` SET `id_promo`='$promotion' WHERE id_user = '$id'");
             $req_promotion->execute();
         }
-        header('Location: ../pages/admin_gestion_compte_liste.php?success="yes"');
+
+        if ($role === '1'){
+            header('Location: ../pages/admin_liste_apprenants.php?page=1&success=yes');
+        }
+
+        if ($role === '2'){
+            header('Location: ../pages/admin_liste_formateurs.php?page=1&success=yes');
+        }
+
+        if ($role === '3'){
+            header('Location: ../pages/admin_liste_tuteurs.php?page=1&success=yes');
+        }
+     
         exit();
     }else {
         $erreur_serialiser = serialize($erreur);

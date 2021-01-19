@@ -12,11 +12,7 @@ require_once '../includes/header.php';
 
 
 <section class="container d-flex flex-column">
-    <?php if (isset($_GET['success'])) { ?>
-        <div class="alert alert-success w-50 align-self-center text-center" role="alert">
-            La modification a bien été effectuée !
-        </div>
-    <?php } ?>
+    
     <div class="row row-cols-md-3 row-cols-1">
         <div class="col d-flex align-items-center flex-column py-5">
             <a href="admin_liste_apprenants.php?page=1">

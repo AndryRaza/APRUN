@@ -12,7 +12,12 @@ require_once '../includes/pagination.php';
 
 </div>
 
-<section class="container text-center bg-light py-5">
+<section class="container text-center bg-light py-5 d-flex flex-column">
+    <?php if (isset($_GET['success'])) { ?>
+        <div class="alert alert-success w-50 align-self-center text-center" role="alert">
+            La modification a bien été effectuée !
+        </div>
+    <?php } ?>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead class="table-dark">
@@ -25,13 +30,13 @@ require_once '../includes/pagination.php';
                 </tr>
             </thead>
             <tbody>
-                <?php 
-                    require_once '../includes/liste_apprenant.php';
+                <?php
+                require_once '../includes/liste_apprenant.php';
                 ?>
             </tbody>
         </table>
-        <?php 
-            pagination($number_of_results,$page,'admin_liste_apprenants');
+        <?php
+        pagination($number_of_results, $page, 'admin_liste_apprenants');
         ?>
     </div>
 </section>

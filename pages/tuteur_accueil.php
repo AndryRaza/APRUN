@@ -2,7 +2,7 @@
 $titre = 'Accueil tuteur';
 $allow = '3';
 require_once '../includes/header.php';
-
+require_once '../includes/pagination.php';
 ?>
 
 <section class="container-fluid bg-dark">
@@ -27,6 +27,9 @@ require_once '../includes/header.php';
                 ?>
             </tbody>
         </table>
+        <?php 
+        pagination($number_of_results,$page,'tuteur_accueil');
+        ?>
     </div>
 </section>
 <?php

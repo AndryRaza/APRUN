@@ -1,14 +1,7 @@
 <?php
 
-$servname = "localhost";
-$dbname = "signature";
-$user = "root";
-$pass = NULL;
+require_once '../includes/bdd.php';
 
-/*
-$bdd = new PDO("mysql:host=$servname;dbname=$dbname", $user, $pass);
-$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-*/
 session_start();
 
 $data = $_POST['url'];

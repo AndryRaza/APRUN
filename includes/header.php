@@ -6,7 +6,6 @@ if ($allow !== $_SESSION['role'] && $_SESSION['user'] === "") { //Pour ne pas ac
     header('Location: ../index.php');
     exit();
 }
-
 $servername = "localhost";
 $username = "root";
 $password = NULL;
@@ -68,7 +67,7 @@ $nbre = $req->fetch();
                 <div class="justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <?php if ($allow ===  "0" && $nbre['COUNT(id)'] > 0) { ?> <li class="nav-item"><a href="admin_messagerie.php">
-                                    <div id="notification">
+                                    <div class="mb-2" id="notification">
                                         <button type="button" class="btn btn-info">
                                             Message(s) non lu(s) <span class="badge bg-danger">
                                                 <?= $nbre['COUNT(id)']; // Termine le traitement de la requête
