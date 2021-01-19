@@ -23,6 +23,17 @@ if (isset($_POST['valider_emargement'])) {
             //On le rajoute dans la table des absents et par défaut l'absence n'est pas justifiée 
             $req_abs = $bdd->prepare("INSERT INTO `absence`(`id_user`, `date`, `duree`, `justifie`) VALUES ('$id','$date','4','false')");
             $req_abs->execute();
+            $req_abs->closeCursor();
+            
+            $req = $bdd->prepare("SELECT `id`, `id_user`, `nbre` FROM `nbre_absence_utilisateur` WHERE id_user = '$id'");
+            $req->execute();
+            $tab = $req->fetch();
+
+            $nb_heure = $tab['nbre'] + 4; 
+
+            $req = $bdd->prepare("UPDATE `nbre_absence_utilisateur` SET `nbre`= '$nb_heure' WHERE id_user = '$id'");
+            $req->execute();
+            $req->closeCursor();
         }
     }
 

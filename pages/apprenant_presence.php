@@ -3,6 +3,7 @@
 require_once '../includes/bdd.php';
 
 $id = $_SESSION['user'];
+
 $req = $bdd->prepare("SELECT * FROM `nbre_absence_utilisateur` WHERE id_user = '$id'");
 $req->execute();
 $tab = $req->fetch(PDO::FETCH_ASSOC);
@@ -11,6 +12,14 @@ $req->closeCursor();
 $req = $bdd->prepare("SELECT `date` FROM `absence` WHERE id_user = '$id' and justifie = 'false' ");
 $req->execute();
 $tab_date = $req->fetchAll(PDO::FETCH_ASSOC);
+$req->closeCursor();
+
+$req = $bdd->prepare("SELECT promotion.duree AS duree 
+                     FROM `utilisateur_promotion` 
+                     INNER JOIN `promotion`ON promotion.id_promo = utilisateur_promotion.id_promo
+                     WHERE id_user = '$id' ");
+$req->execute();
+$promo = $req->fetch();
 $req->closeCursor();
 
 ?>
@@ -22,7 +31,7 @@ $req->closeCursor();
     <div class="container py-5 w-75 bg-light">
         <h2>Présence/Absence :</h2>
         <p class="py-2">
-           Totale d'heures de la formation : 
+           Totale d'heures de la formation : <?= $promo['duree'] ?> heures
         </p>
         <p class="py-2">
             Nombres d'heures d'absence : <?php
@@ -30,7 +39,7 @@ $req->closeCursor();
                                             ?>
         </p>
         <p class="py-2">
-            Pourcentage de présence :
+            Pourcentage de présence :   <?= 100 - ($tab['nbre'] / $promo['duree'] * 100 ) ?> %
         </p>
     </div>
 
