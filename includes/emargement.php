@@ -46,6 +46,7 @@ if (isset($_POST['valider_promo_formateur'])) {
 
     <section class="container text-center bg-light py-5">
         <form action="../includes/absence.php" method="POST">
+        <div class="table-responsive">
             <table class="table table-striped">
                 <thead class="table-dark">
                     <tr>
@@ -72,6 +73,7 @@ if (isset($_POST['valider_promo_formateur'])) {
                     <?php } ?>
                 </tbody>
             </table>
+        </div>
             <input type="hidden" name="id_promo" value="<?= $id_promo ?>">
             <input type="hidden" name="date" value=" <?= date('Y-m-d'); ?>">
 

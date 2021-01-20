@@ -63,7 +63,7 @@ $nbre = $req->fetch();
                     echo 'tuteur_accueil.php?page=1';
                 }
                 ?>
-                "><img  src="../ressources/img/logo.png" width="250px" height="100px" ></a>
+                "><img  src="../ressources/img/logo.png"  id="logo"></a>
                 <div class="justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <?php if ($allow ===  "0" && $nbre['COUNT(id)'] > 0) { ?> <li class="nav-item"><a href="admin_messagerie.php">
