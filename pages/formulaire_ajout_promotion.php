@@ -11,7 +11,7 @@ require_once '../includes/header.php';
         <form class="d-flex flex-column" action="../includes/ajout_promotion.php" method="POST">
 
             <label class="mb-2" for="nom_promotion">Nom</label>
-            <input class=" form-control mb-4" type="text" name="nom_promotion" id="nom_promotion" required pattern="[A-Za-z - ]+">
+            <input class=" form-control mb-4" type="text" name="nom_promotion" id="nom_promotion" required pattern="[A-Za-z - ' é è ]+">
 
             <label class="mb-2" for="annee">Annees (Début - Fin)</label>
             <div class="d-flex">

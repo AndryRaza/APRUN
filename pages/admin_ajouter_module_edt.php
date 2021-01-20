@@ -15,7 +15,7 @@ require_once '../includes/header.php';
         <form class="d-flex flex-column" action="../includes/ajouter_evenements.php" method="POST">
 
             <label class="mb-2" for="titre">Titre</label>
-            <input class=" form-control mb-4" type="text" name="titre" id="titre" required pattern="[A-Za-z - ]+">
+            <input class=" form-control mb-4" type="text" name="titre" id="titre" required pattern="[A-Za-z - + ' é è 0-9 @]+">
 
             <label class="mb-2" for="date">Date</label>
             <input class="form-control mb-4" type="date" name="date" id="date">

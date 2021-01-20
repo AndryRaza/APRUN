@@ -2,12 +2,14 @@
 $titre = 'Emploi du temps';
 $allow = '1';
 
+require_once '../includes/bdd.php';
+
 ?>
 <?php require_once '../includes/header.php' ?>
 
 <section class="container-fluid h-100 text-center" id="edt_apprenant">
 
-    <h1 class="mb-5">Bonjour</h1>
+    <h1 class="mb-5">Bonjour </h1>
 
     <section class="container d-flex flex-column">
         <?php if (isset($_GET['success'])) { ?>
@@ -54,11 +56,5 @@ require_once '../includes/footer.php';
             display: flex;
             flex-direction: column;
         }
-
-        /*
-.fc-scrollgrid{
-   
-}
-*/
     }
 </style>

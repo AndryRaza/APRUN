@@ -83,7 +83,7 @@ function affichage_messagerie()
                     <?= $value['description'] ?>
                 </p>
             </td>
-            <td class="d-flex justify-content-center">
+            <td class="d-flex h-100 w-100">
                 <form class="form_justif " method="POST">
                     <input type="hidden" class="email" name="email" value="<?= $value['email'] ?>">
                     <input type="hidden" class="date" name="date" value="<?= $value['date'] ?>">
@@ -91,7 +91,7 @@ function affichage_messagerie()
                     <input type="hidden" class="description" name="description" value="<?= $value['description'] ?>">
                     <button type="button" class="btn btn-primary"  value="Voir" onclick="afficher_modal_justificatif( '<?= $value['email'] ?> ','<?= $value['date'] ?>' , '<?= $value['motif'] ?> ','<?= $value['justificatif'] ?>' ,'<?= $value['description'] ?> ')"> Voir </button>
                 </form>
-                <form class="mx-3" action="../includes/valider_justificatif.php" method="POST">
+                <form class="ml-3" action="../includes/valider_justificatif.php" method="POST">
                     <input type="hidden" name="id_user" value="<?= $value['id_user'] ?>">
                     <input type="hidden" class="date" name="date" value="<?= $value['date'] ?>">
                     <input type="submit" class="btn btn-primary" value="Valider" name="Valider">

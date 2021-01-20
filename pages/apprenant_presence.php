@@ -42,7 +42,7 @@ $req->closeCursor();
                                             ?>
         </p>
         <p class="py-2">
-            Pourcentage de présence :   <?= 100 - ($tab['nbre'] / $promo['duree'] * 100 ) ?> %
+            Pourcentage de présence :   <?= round(100 - ($tab['nbre'] / $promo['duree'] * 100 ),0) ?> %
         </p>
     </div>
 

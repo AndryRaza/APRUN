@@ -73,3 +73,14 @@ require_once '../includes/tuteur_apprenant_presence.php';
 require_once '../includes/footer.php';
 
 ?>
+
+<style>
+    @media all and (max-width: 870px) {
+
+
+        .fc-header-toolbar {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+</style>

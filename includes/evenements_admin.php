@@ -1,6 +1,11 @@
 <?php
 
-$id_promo = $_POST['choix_promo'];   //On récupére l'id de l'utilisateur pour pouvoir récupérer sa promotion
+if (isset($_GET['choix_promo'])) {
+    $id_promo = $_GET['choix_promo'];
+} else {
+    $id_promo = $_POST['choix_promo'];   //On récupére l'id de l'utilisateur pour pouvoir récupérer sa promotion
+}
+
 
 require_once 'bdd.php';
 
@@ -24,11 +29,11 @@ $tab = $req->fetchALL(PDO::FETCH_ASSOC);
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'timeGridWeek',
             locale: 'fr',
-            buttonText: {   
+            buttonText: {
                 today: 'Aujourd\'hui',
                 month: 'Mois',
                 week: 'Semaine',
-                day: 'Journée', 
+                day: 'Journée',
                 list: 'Liste'
             },
             headerToolbar: {
@@ -41,7 +46,7 @@ $tab = $req->fetchALL(PDO::FETCH_ASSOC);
             dayMaxEvents: true, // allow "more" link when too many events
             events: <?= json_encode($tab); ?>
 
-                
+
 
         });
 
